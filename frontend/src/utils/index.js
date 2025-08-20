@@ -1,4 +1,4 @@
-const { Box } = require("@chakra-ui/react");
+const { Box, Input } = require("@chakra-ui/react");
 
 export const PageWrapper = ({ children, ...rest }) => {
   return (
@@ -6,4 +6,8 @@ export const PageWrapper = ({ children, ...rest }) => {
       {children}
     </Box>
   );
+};
+
+export const ThemeInput = ({ ...rest }) => {
+  return <Input {...rest} />;
 };

@@ -26,7 +26,9 @@ const handleSignUp = async (req, res) => {
     );
 
     if (response) {
-      return res.status(201).json({ msg: "User registered successfully..." });
+      return res
+        .status(201)
+        .json({ msg: "User registered successfully...", status: 201 });
     } else {
       return res.status(500).json({ msg: "User registration failed..." });
     }
