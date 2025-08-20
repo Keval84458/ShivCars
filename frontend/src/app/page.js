@@ -1,11 +1,12 @@
 import React from "react";
-import { Box, Text } from "@chakra-ui/react";
+import { PageWrapper } from "@/utils";
+import HeroSection from "./components/Hero-Section";
 
 const page = () => {
   return (
-    <Box>
-      <Text color="primary.400">Tech with Keval</Text>
-    </Box>
+    <PageWrapper>
+      <HeroSection />
+    </PageWrapper>
   );
 };
 

@@ -11,12 +11,42 @@ import {
   Input,
   Button,
   useDisclosure,
+  VStack,
 } from "@chakra-ui/react";
 import { PiListBold } from "react-icons/pi";
+import Link from "next/link";
+import { PAGE_PATH_KEYS } from "@/utils/constant";
 
 const HeaderDrawer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
+
+  const linkData = [
+    {
+      name: "Home",
+      link: PAGE_PATH_KEYS.HOME,
+    },
+    {
+      name: "Cars",
+      link: PAGE_PATH_KEYS.CARS,
+    },
+    {
+      name: "Services",
+      link: PAGE_PATH_KEYS.SERVICES,
+    },
+    {
+      name: "Bookings",
+      link: PAGE_PATH_KEYS.BOOKINGS,
+    },
+    {
+      name: "About",
+      link: PAGE_PATH_KEYS.ABOUT,
+    },
+    {
+      name: "Contact",
+      link: PAGE_PATH_KEYS.CONTACT,
+    },
+  ];
   return (
     <>
       <Button
@@ -39,15 +69,22 @@ const HeaderDrawer = () => {
           <DrawerHeader>Create your account</DrawerHeader>
 
           <DrawerBody>
-            <Input placeholder="Type here..." />
+            <VStack>
+              {linkData.map((data, inx, arr) => {
+                return (
+                  <React.Fragment key={inx}>
+                    <Button
+                      backgroundColor="transparent"
+                      _hover={{ bg: "transparent" }}
+                      _disabled={{ bg: "transparent" }}
+                    >
+                      <Link href={data.link}>{data.name}</Link>
+                    </Button>
+                  </React.Fragment>
+                );
+              })}
+            </VStack>
           </DrawerBody>
-
-          <DrawerFooter>
-            <Button variant="outline" mr={3} onClick={onClose}>
-              Cancel
-            </Button>
-            <Button colorScheme="blue">Save</Button>
-          </DrawerFooter>
         </DrawerContent>
       </Drawer>
     </>
