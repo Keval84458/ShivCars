@@ -1,14 +1,15 @@
 const jwt = require("jsonwebtoken");
+
 const handleAuthenticated = (req, res) => {
+  console.log("TOKEN", req.token);
   const token = req.cookies.authToken;
-  if (!token) {
-    return res.status(409).json({ msg: "Not authenticated..." });
-  }
+  if (!token) return res.status(401).json({ message: "Not authenticated" });
+
   try {
     const user = jwt.verify(token, process.env.SECRET_KEY);
-    res.status(200).json({ msg: "User Authenticated...", user });
+    res.json({ message: "Protected data", user });
   } catch (err) {
-    res.status(409).json({ msg: "Invalid Token" });
+    res.status(401).json({ message: "Invalid token" });
   }
 };
 

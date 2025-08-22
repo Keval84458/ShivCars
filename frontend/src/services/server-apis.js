@@ -4,7 +4,7 @@ import axios from "axios";
 export const handleSignup = async (payload) => {
   try {
     const response = await axios.post(
-      "http://localhost:8001/register",
+      "http://localhost:8001/api/register",
       payload
     );
     console.log("response", response);

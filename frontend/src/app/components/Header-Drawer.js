@@ -3,12 +3,10 @@ import React from "react";
 import {
   Drawer,
   DrawerBody,
-  DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
-  Input,
   Button,
   useDisclosure,
   VStack,
@@ -52,10 +50,13 @@ const HeaderDrawer = () => {
       <Button
         ref={btnRef}
         backgroundColor="transparent"
+        color="white.100"
         onClick={onOpen}
         display={{ md: "none" }}
+        _hover={{ backgroundColor: "transparent" }}
+        _disabled={{ backgroundColor: "transparent" }}
       >
-        <PiListBold />
+        <PiListBold size="1.5rem" />
       </Button>
       <Drawer
         isOpen={isOpen}
@@ -66,7 +67,9 @@ const HeaderDrawer = () => {
         <DrawerOverlay />
         <DrawerContent backgroundColor="white">
           <DrawerCloseButton />
-          <DrawerHeader>Create your account</DrawerHeader>
+          <DrawerHeader textAlign={"center"} fontSize="1.7rem">
+            SHIV CARS
+          </DrawerHeader>
 
           <DrawerBody>
             <VStack>
@@ -77,6 +80,7 @@ const HeaderDrawer = () => {
                       backgroundColor="transparent"
                       _hover={{ bg: "transparent" }}
                       _disabled={{ bg: "transparent" }}
+                      onClick={onClose}
                     >
                       <Link href={data.link}>{data.name}</Link>
                     </Button>

@@ -10,11 +10,15 @@ import {
   VStack,
   Text,
   useBreakpointValue,
+  InputGroup,
+  InputRightElement,
+  IconButton,
 } from "@chakra-ui/react";
 import { toast } from "react-toastify";
 import { PAGE_PATH_KEYS } from "@/utils/constant";
 import { useRouter } from "next/navigation";
 import { handleSignup } from "@/services/server-apis";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({
@@ -23,6 +27,9 @@ const SignUpForm = () => {
     password: "",
     confirmPassword: "",
   });
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const router = useRouter();
 
   const onChange = (key, value) => setFormData({ ...formData, [key]: value });
@@ -34,119 +41,151 @@ const SignUpForm = () => {
       formData.password === "" ||
       formData.confirmPassword === ""
     ) {
-      toast.error("All fietld are required");
+      toast.error("All fields are required");
     } else {
       if (formData.password === formData.confirmPassword) {
         try {
           const { confirmPassword, ...payload } = formData;
           const response = await handleSignup(payload);
           if (response.status === 201) {
+            toast.success("Account created successfully!");
             router.push(PAGE_PATH_KEYS.LOGIN);
           } else {
-            toast.error("User not register...");
+            toast.error("User not registered...");
           }
-        } catch (err) {}
+        } catch (err) {
+          toast.error("Something went wrong...");
+        }
       } else {
-        toast.warn("Confirm Password do not matched...");
+        toast.warn("Confirm Password does not match...");
       }
     }
   };
 
   return (
-    <>
-      <Box
-        maxW={useBreakpointValue({ base: "90%", sm: "400px" })}
-        mx="auto"
-        mt={{ base: 6, md: 10 }}
-        p={{ base: 4, md: 6 }}
-        boxShadow="lg"
-        borderRadius="lg"
-        bg="white"
+    <Box
+      maxW={useBreakpointValue({ base: "95%", sm: "420px" })}
+      mx="auto"
+      mt={{ base: 6, md: 12 }}
+      p={{ base: 5, md: 8 }}
+      borderRadius="2xl"
+      bg="white"
+      boxShadow="2xl"
+      _hover={{ boxShadow: "xl" }}
+      transition="all 0.3s ease"
+    >
+      <Heading
+        size={useBreakpointValue({ base: "md", md: "lg" })}
+        mb={6}
+        textAlign="center"
+        bgGradient="linear(to-r, blue.500, purple.500)"
+        bgClip="text"
       >
-        <Heading
-          size={useBreakpointValue({ base: "md", md: "lg" })}
-          mb={6}
-          textAlign="center"
-          color="brand.500"
-        >
-          Create Account
-        </Heading>
+        Create Your Account
+      </Heading>
 
-        <VStack spacing={4}>
-          <FormControl isRequired>
-            <FormLabel fontSize={{ base: "sm", md: "md" }}>Name</FormLabel>
-            <ThemeInput
-              placeholder="Enter your name"
-              value={formData.name}
-              onChange={(e) => onChange("name", e.target.value)}
-            />
-          </FormControl>
+      <VStack spacing={5}>
+        <FormControl isRequired>
+          <FormLabel fontSize="sm" htmlFor="name">
+            Name
+          </FormLabel>
+          <ThemeInput
+            id="name"
+            type="text"
+            placeholder="Enter your name"
+            value={formData.name}
+            onChange={(e) => onChange("name", e.target.value)}
+          />
+        </FormControl>
 
-          <FormControl isRequired>
-            <FormLabel fontSize={{ base: "sm", md: "md" }}>Email</FormLabel>
-            <ThemeInput
-              type="email"
-              placeholder="Enter your email"
-              value={formData.email}
-              onChange={(e) => onChange("email", e.target.value)}
-            />
-          </FormControl>
+        <FormControl isRequired>
+          <FormLabel fontSize="sm" htmlFor="email">
+            Email
+          </FormLabel>
+          <ThemeInput
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            value={formData.email}
+            onChange={(e) => onChange("email", e.target.value)}
+          />
+        </FormControl>
 
-          <FormControl isRequired>
-            <FormLabel fontSize={{ base: "sm", md: "md" }}>Password</FormLabel>
+        <FormControl isRequired>
+          <FormLabel fontSize="sm" htmlFor="password">
+            Password
+          </FormLabel>
+          <InputGroup>
             <ThemeInput
-              type="password"
+              id="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Enter your password"
               value={formData.password}
               onChange={(e) => onChange("password", e.target.value)}
             />
-          </FormControl>
+            <InputRightElement>
+              <IconButton
+                size="sm"
+                variant="ghost"
+                aria-label="Toggle Password"
+                icon={showPassword ? <FaEyeSlash /> : <FaEye />}
+                onClick={() => setShowPassword(!showPassword)}
+              />
+            </InputRightElement>
+          </InputGroup>
+        </FormControl>
 
-          <FormControl isRequired>
-            <FormLabel fontSize={{ base: "sm", md: "md" }}>
-              Confirm Password
-            </FormLabel>
+        <FormControl isRequired>
+          <FormLabel fontSize="sm" htmlFor="confirmPassword">
+            Confirm Password
+          </FormLabel>
+          <InputGroup>
             <ThemeInput
-              type="password"
+              id="confirmPassword"
+              type={showConfirmPassword ? "text" : "password"}
               placeholder="Confirm your password"
               value={formData.confirmPassword}
               onChange={(e) => onChange("confirmPassword", e.target.value)}
             />
-          </FormControl>
+            <InputRightElement>
+              <IconButton
+                size="sm"
+                variant="ghost"
+                aria-label="Toggle Confirm Password"
+                icon={showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              />
+            </InputRightElement>
+          </InputGroup>
+        </FormControl>
 
-          <Button
-            colorScheme="blue"
-            size={useBreakpointValue({ base: "sm", md: "md" })}
-            w="full"
-            mt={4}
-            type="submit"
-            _hover={{ bg: "blue.600" }}
-            onClick={handleSignUpForm}
-          >
-            Sign Up
-          </Button>
+        <Button
+          colorScheme="blue"
+          w="full"
+          mt={3}
+          size="md"
+          borderRadius="full"
+          _hover={{ bgGradient: "linear(to-r, blue.600, purple.600)" }}
+          onClick={handleSignUpForm}
+        >
+          Sign Up
+        </Button>
 
+        <Text fontSize="sm" color="gray.600" textAlign="center">
+          Already have an account?{" "}
           <Text
-            fontSize={{ base: "xs", md: "sm" }}
-            color="gray.500"
-            textAlign="center"
+            as="span"
+            color="blue.500"
+            fontWeight="semibold"
+            cursor="pointer"
+            onClick={() => router.push(PAGE_PATH_KEYS.LOGIN)}
           >
-            Already have an account?{" "}
-            <Text as="span" color="blue.500" cursor="pointer">
-              Login
-            </Text>
+            Login
           </Text>
-        </VStack>
-      </Box>
-    </>
+        </Text>
+      </VStack>
+    </Box>
   );
 };
 
 export default SignUpForm;
-
-// CREATE TABLE users (
-//   id INT AUTO_INCREMENT PRIMARY KEY,
-//   name VARCHAR(100) NOT NULL,
-//   email VARCHAR(100) UNIQUE NOT NULL,
-//   password VARCHAR(255) NOT NULL
-// );

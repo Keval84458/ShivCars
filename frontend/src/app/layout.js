@@ -3,6 +3,7 @@ import "./globals.css";
 import ChakraProvider from "@/Chakra-UI/Chakra-Provider";
 import HeaderNavigation from "./components/Header-Navigation";
 import { ToastContainer } from "react-toastify";
+import { AuthProvider } from "@/context/AuthProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,13 +24,15 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <ChakraProvider>
-          <HeaderNavigation />
-          {children}
-          <ToastContainer
-            position="top-right"
-            autoClose={1500}
-            theme="colored"
-          />
+          <AuthProvider>
+            <HeaderNavigation />
+            {children}
+            <ToastContainer
+              position="top-right"
+              autoClose={1500}
+              theme="colored"
+            />
+          </AuthProvider>
         </ChakraProvider>
       </body>
     </html>

@@ -7,4 +7,6 @@ export const PAGE_PATH_KEYS = {
   CONTACT: "/contact",
   LOGIN: "/login",
   SIGNUP: "/sign-up",
+  PROFILE: "",
+  NEW_CARS: "/cars/new-cars",
 };
