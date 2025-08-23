@@ -12,7 +12,15 @@ import {
 import React from "react";
 import HeaderDrawer from "./Header-Drawer";
 import Link from "next/link";
-import { PAGE_PATH_KEYS } from "@/utils/constant";
+import {
+  ABOUT_SUBPAGE_KEY,
+  BOOKING_SUBPAGE_KEY,
+  CAR_SUBPAGE_KEY,
+  CONTACT_SUBPAGE_KEY,
+  PAGE_PATH_KEYS,
+  PROFILE_SUBPAGE_KEY,
+  SERVICES_SUBPAGE_KEY,
+} from "@/utils/constant";
 import AuthButtons from "./AuthButtons";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 
@@ -21,50 +29,67 @@ const HeaderNavigation = () => {
     {
       title: "Cars",
       options: [
-        { title: "New Cars", link: PAGE_PATH_KEYS.NEW_CARS },
-        { title: "Used Cars", link: PAGE_PATH_KEYS.CARS },
-        { title: "Compare Cars", link: PAGE_PATH_KEYS.CARS },
-        { title: "Car Valuation", link: PAGE_PATH_KEYS.CARS },
+        { title: "New Cars", link: CAR_SUBPAGE_KEY.NEW_CAR },
+        { title: "Used Cars", link: CAR_SUBPAGE_KEY.USED_CAR },
+        { title: "Compare Cars", link: CAR_SUBPAGE_KEY.COMPARE_CARS },
+        { title: "Car Valuation", link: CAR_SUBPAGE_KEY.CAR_VALUATION },
       ],
     },
     {
       title: "Services",
       options: [
-        { title: "Car consulting", link: PAGE_PATH_KEYS.SERVICES },
-        { title: "Car Service & Maintenance", link: PAGE_PATH_KEYS.SERVICES },
-        { title: "Insurance & Renewal", link: PAGE_PATH_KEYS.SERVICES },
-        { title: "Finance & EMI calculator", link: PAGE_PATH_KEYS.SERVICES },
+        { title: "Car consulting", link: SERVICES_SUBPAGE_KEY.CAR_CONSULTING },
+        {
+          title: "Car Service & Maintenance",
+          link: SERVICES_SUBPAGE_KEY.SERVICE_AND_MAINTANCE,
+        },
+        {
+          title: "Insurance & Renewal",
+          link: SERVICES_SUBPAGE_KEY.INSURANCE_ANS_RENEWAL,
+        },
+        {
+          title: "Finance & EMI calculator",
+          link: SERVICES_SUBPAGE_KEY.FINANCE_AND_AMI,
+        },
       ],
     },
     {
       title: "Bookings",
       options: [
-        { title: "Book a service", link: PAGE_PATH_KEYS.BOOKINGS },
-        { title: "Track my booking", link: PAGE_PATH_KEYS.SERVICES },
+        { title: "Book a service", link: BOOKING_SUBPAGE_KEY.BOOK_SERVICE },
+        {
+          title: "Track my booking",
+          link: BOOKING_SUBPAGE_KEY.TRACK_MY_BOOKING,
+        },
       ],
     },
     {
       title: "About Us",
       options: [
-        { title: "Who we are ?", link: PAGE_PATH_KEYS.ABOUT },
-        { title: "Why choose Shiv Cars ?", link: PAGE_PATH_KEYS.ABOUT },
+        { title: "Who we are ?", link: ABOUT_SUBPAGE_KEY.WHO_WE_ARE },
+        { title: "Why choose Shiv Cars ?", link: ABOUT_SUBPAGE_KEY.WHY_CHOOSE },
       ],
     },
     {
       title: "Contact",
       options: [
-        { title: "Contact Form", link: PAGE_PATH_KEYS.CONTACT },
-        { title: "Whatapp / Call", link: PAGE_PATH_KEYS.CONTACT },
-        { title: "Service location", link: PAGE_PATH_KEYS.CONTACT },
+        { title: "Contact Form", link: CONTACT_SUBPAGE_KEY.CONTACT_FORM },
+        {
+          title: "Whatapp / Call",
+          link: CONTACT_SUBPAGE_KEY.WHATSAPP_AND_CALL,
+        },
+        {
+          title: "Service location",
+          link: CONTACT_SUBPAGE_KEY.SERVICE_LOCATION,
+        },
       ],
     },
     {
       title: "Profile",
       options: [
-        { title: "My profile", link: PAGE_PATH_KEYS.PROFILE },
-        { title: "My cars", link: PAGE_PATH_KEYS.PROFILE },
-        { title: "My booking", link: PAGE_PATH_KEYS.PROFILE },
-        { title: "Logout", link: PAGE_PATH_KEYS.PROFILE },
+        { title: "My profile", link: PROFILE_SUBPAGE_KEY.MY_PROFILE },
+        { title: "My cars", link: PROFILE_SUBPAGE_KEY.MY_CARS },
+        { title: "My booking", link: PROFILE_SUBPAGE_KEY.MY_BOOKING },
       ],
     },
   ];

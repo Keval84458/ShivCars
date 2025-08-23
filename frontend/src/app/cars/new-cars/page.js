@@ -1,13 +1,11 @@
 import { PageWrapper } from "@/utils";
-import { Box, Text } from "@chakra-ui/react";
 import React from "react";
+import NewCarGrid from "./_layouts/new-car-grid";
 
 const NewCars = () => {
   return (
-    <PageWrapper>
-      <Box>
-        <Text>This is New car Pages</Text>
-      </Box>
+    <PageWrapper p={2}>
+      <NewCarGrid />
     </PageWrapper>
   );
 };

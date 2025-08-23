@@ -10,54 +10,111 @@ import {
   Button,
   useDisclosure,
   VStack,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+  Box,
+  Text,
 } from "@chakra-ui/react";
 import { PiListBold } from "react-icons/pi";
 import Link from "next/link";
-import { PAGE_PATH_KEYS } from "@/utils/constant";
+import {
+  ABOUT_SUBPAGE_KEY,
+  BOOKING_SUBPAGE_KEY,
+  CAR_SUBPAGE_KEY,
+  CONTACT_SUBPAGE_KEY,
+  PROFILE_SUBPAGE_KEY,
+  SERVICES_SUBPAGE_KEY,
+} from "@/utils/constant";
 
 const HeaderDrawer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
 
-  const linkData = [
+  const linkMenus = [
     {
-      name: "Home",
-      link: PAGE_PATH_KEYS.HOME,
+      title: "Cars",
+      options: [
+        { title: "New Cars", link: CAR_SUBPAGE_KEY.NEW_CAR },
+        { title: "Used Cars", link: CAR_SUBPAGE_KEY.USED_CAR },
+        { title: "Compare Cars", link: CAR_SUBPAGE_KEY.COMPARE_CARS },
+        { title: "Car Valuation", link: CAR_SUBPAGE_KEY.CAR_VALUATION },
+      ],
     },
     {
-      name: "Cars",
-      link: PAGE_PATH_KEYS.CARS,
+      title: "Services",
+      options: [
+        { title: "Car consulting", link: SERVICES_SUBPAGE_KEY.CAR_CONSULTING },
+        {
+          title: "Car Service & Maintenance",
+          link: SERVICES_SUBPAGE_KEY.SERVICE_AND_MAINTANCE,
+        },
+        {
+          title: "Insurance & Renewal",
+          link: SERVICES_SUBPAGE_KEY.INSURANCE_ANS_RENEWAL,
+        },
+        {
+          title: "Finance & EMI calculator",
+          link: SERVICES_SUBPAGE_KEY.FINANCE_AND_AMI,
+        },
+      ],
     },
     {
-      name: "Services",
-      link: PAGE_PATH_KEYS.SERVICES,
+      title: "Bookings",
+      options: [
+        { title: "Book a service", link: BOOKING_SUBPAGE_KEY.BOOK_SERVICE },
+        {
+          title: "Track my booking",
+          link: BOOKING_SUBPAGE_KEY.TRACK_MY_BOOKING,
+        },
+      ],
     },
     {
-      name: "Bookings",
-      link: PAGE_PATH_KEYS.BOOKINGS,
+      title: "About Us",
+      options: [
+        { title: "Who we are ?", link: ABOUT_SUBPAGE_KEY.WHO_WE_ARE },
+        { title: "Why choose Shiv Cars ?", link: ABOUT_SUBPAGE_KEY.WHY_CHOOSE },
+      ],
     },
     {
-      name: "About",
-      link: PAGE_PATH_KEYS.ABOUT,
+      title: "Contact",
+      options: [
+        { title: "Contact Form", link: CONTACT_SUBPAGE_KEY.CONTACT_FORM },
+        {
+          title: "WhatsApp / Call",
+          link: CONTACT_SUBPAGE_KEY.WHATSAPP_AND_CALL,
+        },
+        {
+          title: "Service location",
+          link: CONTACT_SUBPAGE_KEY.SERVICE_LOCATION,
+        },
+      ],
     },
     {
-      name: "Contact",
-      link: PAGE_PATH_KEYS.CONTACT,
+      title: "Profile",
+      options: [
+        { title: "My profile", link: PROFILE_SUBPAGE_KEY.MY_PROFILE },
+        { title: "My cars", link: PROFILE_SUBPAGE_KEY.MY_CARS },
+        { title: "My booking", link: PROFILE_SUBPAGE_KEY.MY_BOOKING },
+      ],
     },
   ];
+
   return (
     <>
       <Button
         ref={btnRef}
-        backgroundColor="transparent"
-        color="white.100"
+        bg="transparent"
+        color="white"
         onClick={onOpen}
         display={{ md: "none" }}
-        _hover={{ backgroundColor: "transparent" }}
-        _disabled={{ backgroundColor: "transparent" }}
+        _hover={{ bg: "transparent" }}
       >
-        <PiListBold size="1.5rem" />
+        <PiListBold size="1.8rem" />
       </Button>
+
       <Drawer
         isOpen={isOpen}
         placement="left"
@@ -65,28 +122,69 @@ const HeaderDrawer = () => {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay />
-        <DrawerContent backgroundColor="white">
-          <DrawerCloseButton />
-          <DrawerHeader textAlign={"center"} fontSize="1.7rem">
+        <DrawerContent
+          bg="primary.1000"
+          color="white"
+          borderRightRadius="xl"
+          boxShadow="xl"
+        >
+          <DrawerCloseButton color="white" />
+          <DrawerHeader
+            textAlign="center"
+            fontSize="2xl"
+            fontWeight="bold"
+            borderBottom="1px"
+          >
             SHIV CARS
           </DrawerHeader>
 
           <DrawerBody>
-            <VStack>
-              {linkData.map((data, inx, arr) => {
-                return (
-                  <React.Fragment key={inx}>
-                    <Button
-                      backgroundColor="transparent"
-                      _hover={{ bg: "transparent" }}
-                      _disabled={{ bg: "transparent" }}
-                      onClick={onClose}
+            <VStack spacing={4} align="stretch">
+              {linkMenus.map((menu, idx) => (
+                <Accordion key={idx} allowToggle>
+                  <AccordionItem border="none">
+                    <AccordionButton
+                      _expanded={{ bg: "whiteAlpha.200", borderRadius: "md" }}
+                      py={3}
                     >
-                      <Link href={data.link}>{data.name}</Link>
-                    </Button>
-                  </React.Fragment>
-                );
-              })}
+                      <Box
+                        as="span"
+                        flex="1"
+                        textAlign="left"
+                        fontWeight="semibold"
+                        fontSize="lg"
+                      >
+                        {menu.title}
+                      </Box>
+                      <AccordionIcon />
+                    </AccordionButton>
+
+                    <AccordionPanel pb={3}>
+                      <VStack align="stretch" spacing={2}>
+                        {menu.options.map((opt, i) => (
+                          <Link key={i} href={opt.link} passHref>
+                            <Button
+                              onClick={onClose}
+                              px={3}
+                              py={2}
+                              borderRadius="md"
+                              transition="all 0.2s"
+                              _hover={{ bg: "transparent", pl: 5 }}
+                              cursor="pointer"
+                              borderBottom="1px"
+                              borderTop="1px"
+                              bg="transparent"
+                              color="white.100"
+                            >
+                              {opt.title}
+                            </Button>
+                          </Link>
+                        ))}
+                      </VStack>
+                    </AccordionPanel>
+                  </AccordionItem>
+                </Accordion>
+              ))}
             </VStack>
           </DrawerBody>
         </DrawerContent>

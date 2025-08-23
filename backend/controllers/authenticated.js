@@ -1,7 +1,6 @@
 const jwt = require("jsonwebtoken");
 
 const handleAuthenticated = (req, res) => {
-  console.log("TOKEN", req.token);
   const token = req.cookies.authToken;
   if (!token) return res.status(401).json({ message: "Not authenticated" });
 
