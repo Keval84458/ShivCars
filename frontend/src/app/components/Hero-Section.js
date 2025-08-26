@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import { Typewriter } from "react-simple-typewriter";
-import { Box, Text, Image, Button } from "@chakra-ui/react";
-import { FaCar } from "react-icons/fa";
+import { Box, Text, Image, Button, Flex } from "@chakra-ui/react";
+import { FaCar, FaDownload } from "react-icons/fa";
 import Link from "next/link";
 import { CAR_SUBPAGE_KEY } from "@/utils/constant";
 
@@ -75,21 +75,39 @@ const HeroSection = () => {
             innovation to deliver reliable solutions. From personalized guidance
             to end-to-end services, we help drive your success forward.
           </Text>
-          <Button
-            as={Link}
-            href={CAR_SUBPAGE_KEY.NEW_CAR}
-            bg="transparent"
-            border="1px"
-            borderColor="white.100"
-            color="white.100"
-            gap={2}
-            mt="2rem"
-            size="lg"
-            _hover={{ bg: "transparent", transform: "scale(1.05)" }}
-            _disabled={{ bg: "transparent" }}
-          >
-            <FaCar /> VIEW ALL CARS
-          </Button>
+
+          <Flex gap={2}>
+            <Button
+              as={Link}
+              href={CAR_SUBPAGE_KEY.NEW_CAR}
+              bg="transparent"
+              border="1px"
+              borderColor="white.100"
+              color="white.100"
+              gap={2}
+              mt="1rem"
+              size="md"
+              _hover={{ bg: "transparent", transform: "scale(1.05)" }}
+              _disabled={{ bg: "transparent" }}
+            >
+              <FaCar /> VIEW ALL CARS
+            </Button>
+            <Button
+              as={Link}
+              href={CAR_SUBPAGE_KEY.CAR_BOOKING}
+              bg="transparent"
+              border="1px"
+              borderColor="white.100"
+              color="white.100"
+              gap={2}
+              mt="1rem"
+              size="md"
+              _hover={{ bg: "transparent", transform: "scale(1.05)" }}
+              _disabled={{ bg: "transparent" }}
+            >
+              <FaDownload size=".9rem" /> CAR BOOKING
+            </Button>
+          </Flex>
         </Box>
       </Box>
     </Box>

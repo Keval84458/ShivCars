@@ -26,7 +26,6 @@ const CarBookingForm = () => {
   const fetchCarData = async () => {
     try {
       const res = await getAllNewCars();
-      console.log("res", res);
       setCarData(res);
     } catch (err) {
       console.log("err", err);
@@ -50,7 +49,6 @@ const CarBookingForm = () => {
   const handleCarBooking = async () => {
     try {
       const payload = { ...formData };
-      console.log("payload", payload);
 
       const res = await carBooking(payload);
       if (res) {

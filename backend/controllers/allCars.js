@@ -1,7 +1,6 @@
 const { connectionToMySql } = require("../connection");
 
 const handleImagUpload = async (req, res) => {
-  console.log("File uploaded:", req.file);
   const db = await connectionToMySql();
 
   const {
@@ -20,7 +19,6 @@ const handleImagUpload = async (req, res) => {
   console.log("compony ID", companyId);
 
   const carImage = req.file ? `/api/uploads/${req.file.filename}` : "";
-  console.log("carImage", carImage);
 
   const sql = `
     INSERT INTO allcars (carImage, companyId, carName, address, model, price, contactNo,status,ownerName,owner,regNo,description)
@@ -87,8 +85,6 @@ const getAllNewCars = async (req, res) => {
       cars: rows,
     });
   } catch (err) {
-    console.error("❌ Database/Server Error:", err);
-
     return res.status(500).json({
       success: false,
       message: "Failed to fetch cars",
@@ -101,7 +97,6 @@ const handleCarDeleteById = async (req, res) => {
   try {
     const db = await connectionToMySql();
     const deleteCarId = req.params.id;
-    console.log("deleteCarId", deleteCarId);
 
     if (!deleteCarId) {
       return res
@@ -121,7 +116,6 @@ const handleCarDeleteById = async (req, res) => {
       .status(200)
       .json({ success: true, msg: "Car deleted successfully." });
   } catch (err) {
-    console.error("Error deleting car:", err);
     return res
       .status(500)
       .json({ success: false, msg: "Internal server error." });
@@ -141,7 +135,6 @@ const getOneCarById = async (req, res) => {
       cars: rows,
     });
   } catch (err) {
-    console.error("❌ Database/Server Error:", err);
     return res.status(500).json({
       success: false,
       message: "Failed to fetch cars",

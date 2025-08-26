@@ -10,10 +10,8 @@ export const AuthProvider = ({ children }) => {
   const fetchAuthenticated = async () => {
     try {
       const response = await isAuthenticated();
-      console.log("auth Reaponse", response);
       setAuthenticated(response);
     } catch (err) {
-      console.log("Auth check failed:", err);
       setAuthenticated(false);
     }
   };

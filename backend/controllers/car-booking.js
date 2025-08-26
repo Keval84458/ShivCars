@@ -1,4 +1,3 @@
-const { Router } = require("express");
 const { connectionToMySql } = require("../connection");
 const nodemailer = require("nodemailer");
 
@@ -48,7 +47,6 @@ const hadleCarBooking = async (req, res) => {
     await db.query(`UPDATE allcars SET status="Sold" WHERE id=?`, [car_id]);
     const [rows] = await db.query("SELECT * FROM allcars WHERE id=?", [car_id]);
     const user = rows[0];
-    console.log("users", user);
     try {
       const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
@@ -91,7 +89,7 @@ Warm regards,
 Shiv Cars Team`,
       });
 
-      console.log("✅ Email sent:", info.response);
+      // console.log("✅ Email sent:", info.response);
     } catch (emailErr) {
       console.error("❌ Email Sending Failed:", emailErr.message);
     }
@@ -100,7 +98,6 @@ Shiv Cars Team`,
       msg: "Car booking successfully created. Email sent!",
     });
   } catch (err) {
-    console.error("Booking Error:", err);
     return res.status(500).json({ msg: "Something went wrong" });
   }
 };
@@ -108,7 +105,6 @@ Shiv Cars Team`,
 const getAllCarBookings = async (req, res) => {
   try {
     const db = await connectionToMySql();
-
     const [rows] = await db.query("SELECT * FROM carbookings");
 
     return res.status(200).json({
@@ -116,7 +112,6 @@ const getAllCarBookings = async (req, res) => {
       rows,
     });
   } catch (err) {
-    console.error("❌ Error fetching car bookings:", err);
     return res.status(500).json({ msg: "Something went wrong" });
   }
 };
@@ -125,7 +120,6 @@ const bookedCarDeleteById = async (req, res) => {
   try {
     const db = await connectionToMySql();
     const bookingId = req.params.id;
-    console.log("bookingId", bookingId);
 
     const [booking] = await db.query(
       "SELECT car_id FROM carbookings WHERE booking_id=?",

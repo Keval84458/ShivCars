@@ -33,7 +33,6 @@ const LoginForm = () => {
     setFormData((prev) => ({ ...prev, [key]: value }));
 
   const handleLoginForm = async () => {
-    console.log(formData);
     if (!formData.email.trim() || !formData.password.trim()) {
       toast.error("All fields are required ❌");
       return;

@@ -22,6 +22,9 @@ import {
 import { MdDelete } from "react-icons/md";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import { FaPen } from "react-icons/fa";
+import Link from "next/link";
+import { NEW_CAR_SUBPAGE_KEY } from "@/utils/constant";
 
 const CarBookingList = () => {
   const [carBookingData, setCarBookingData] = useState([]);
@@ -39,7 +42,6 @@ const CarBookingList = () => {
   };
 
   const bookedCarDeleteById = async (id) => {
-    console.log("CarIID", id);
     try {
       const result = await Swal.fire({
         title: "Are you sure?",
@@ -80,6 +82,19 @@ const CarBookingList = () => {
 
   return (
     <Box p={6} minH="100vh">
+      <Box display="flex" justifyContent="end">
+        <Button
+          as={Link}
+          href={NEW_CAR_SUBPAGE_KEY.CREATE_NEW_CAR}
+          bg="primary.500"
+          color="white.100"
+          gap={2}
+          _hover={{ bg: "primary.500" }}
+          _disabled={{ bg: "primary.500" }}
+        >
+          Create New <FaPen />
+        </Button>
+      </Box>
       <Text
         fontSize="2xl"
         fontWeight="bold"

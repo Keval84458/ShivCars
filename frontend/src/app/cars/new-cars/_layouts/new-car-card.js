@@ -18,8 +18,8 @@ import { IoCallSharp } from "react-icons/io5";
 import { FaRupeeSign } from "react-icons/fa";
 import { IoInformationCircle } from "react-icons/io5";
 import { GrStatusGood } from "react-icons/gr";
-import { FaCar, FaDownload } from "react-icons/fa";
-import { useRouter } from "next/navigation";
+import { FaCar } from "react-icons/fa";
+
 const NewCarCard = ({ carData }) => {
   return (
     <Card

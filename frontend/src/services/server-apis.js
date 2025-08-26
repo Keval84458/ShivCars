@@ -7,7 +7,6 @@ export const handleSignup = async (payload) => {
       "http://localhost:8001/api/register",
       payload
     );
-    console.log("response", response);
     return response.data;
   } catch (err) {
     console.log("err", err.response ? err.response.data : err.message);
@@ -18,7 +17,6 @@ export const handleSignup = async (payload) => {
 export const getAllNewCars = async () => {
   try {
     const response = await axios.get("http://localhost:8001/api/cars");
-    console.log("response");
     return response.data || null;
   } catch (err) {
     console.log("err", err);
@@ -28,7 +26,6 @@ export const getAllNewCars = async () => {
 export const getAllCarCompony = async () => {
   try {
     const response = await axios.get("http://localhost:8001/api/car-compony");
-    console.log("response");
     return response.data;
   } catch (err) {
     console.log("err", err);
@@ -51,7 +48,6 @@ export const addNewCar = async (payload) => {
 export const getCarById = async (id) => {
   try {
     const response = await axios.get(`http://localhost:8001/api/cars/${id}`);
-    console.log("response", response);
     return response.data;
   } catch (err) {
     console.log("err", err);
@@ -64,7 +60,6 @@ export const handleCarBooking = async (payload) => {
       "http://localhost:8001/api/car-booking",
       payload
     );
-    console.log("response", response);
     return response.data;
   } catch (err) {
     console.log("err", err);
@@ -74,7 +69,6 @@ export const handleCarBooking = async (payload) => {
 export const handlegetAllCarBookings = async () => {
   try {
     const res = await axios.get("http://localhost:8001/api/car-booking");
-    console.log("res", res);
     return res.data;
   } catch (err) {
     console.log("err", err);
@@ -86,7 +80,6 @@ export const handleBookedCarDeleteById = async (carId) => {
     const response = await axios.delete(
       `http://localhost:8001/api/car-booking/${carId}`
     );
-    console.log("response", response);
     return response.data;
   } catch (err) {
     console.log("err", err);

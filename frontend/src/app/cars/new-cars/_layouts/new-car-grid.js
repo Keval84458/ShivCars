@@ -24,12 +24,11 @@ const NewCarGrid = ({ allCars }) => {
   const [cars, setCars] = useState([]);
 
   useEffect(() => {
-    // Simulate API delay or real fetching
     if (allCars?.cars) {
       setTimeout(() => {
         setCars(allCars.cars);
         setLoading(false);
-      }, 800); // small delay for smoother UX
+      }, 800);
     } else {
       setLoading(false);
     }
@@ -37,7 +36,6 @@ const NewCarGrid = ({ allCars }) => {
 
   return (
     <Box>
-      {/* Top Bar */}
       <Box
         display={{ md: "flex" }}
         alignItems="center"
@@ -88,7 +86,6 @@ const NewCarGrid = ({ allCars }) => {
         </Flex>
       </Box>
 
-      {/* Cars Grid */}
       <Box mt={4}>
         {loading ? (
           <Center py={10} flexDirection="column" gap={3}>

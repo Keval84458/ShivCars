@@ -13,7 +13,6 @@ const AuthButtons = () => {
   const handleLogoutUser = async () => {
     try {
       const response = await handleLogout();
-      console.log("response", response);
       toast.success("Logout Successfully...");
       setAuthenticated(false);
     } catch (err) {

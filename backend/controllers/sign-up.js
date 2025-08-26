@@ -33,7 +33,6 @@ const handleSignUp = async (req, res) => {
       return res.status(500).json({ msg: "User registration failed..." });
     }
   } catch (err) {
-    console.log("❌ Error in SignUp:", err);
     return res.status(500).json({ msg: "Server error" });
   }
 };

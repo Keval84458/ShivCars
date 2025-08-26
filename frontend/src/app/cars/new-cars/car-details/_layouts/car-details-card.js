@@ -17,7 +17,6 @@ import {
 } from "@chakra-ui/react";
 
 const CarDetailsCard = ({ carData }) => {
-  console.log("carData");
   const router = useRouter();
   const car = carData.cars[0];
 

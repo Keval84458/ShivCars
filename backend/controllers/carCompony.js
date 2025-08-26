@@ -11,7 +11,6 @@ const getAllCarCompany = async (req, res) => {
       companies: rows,
     });
   } catch (err) {
-    console.error("❌ Server/DB Error:", err);
     return res.status(500).json({
       success: false,
       message: "Server/Database error",

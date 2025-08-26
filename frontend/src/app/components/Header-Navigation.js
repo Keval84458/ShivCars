@@ -151,7 +151,12 @@ const HeaderNavigation = () => {
                       {menu.options.map((opt, inx, arr) => {
                         return (
                           <React.Fragment key={inx}>
-                            <MenuItem as={Link} href={opt.link}>
+                            <MenuItem
+                              as={Link}
+                              href={opt.link}
+                              _hover={{ bg: "transparent" }}
+                              _disabled={{ bg: "transparent" }}
+                            >
                               {opt.title}
                             </MenuItem>
                           </React.Fragment>

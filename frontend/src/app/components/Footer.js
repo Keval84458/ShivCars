@@ -29,7 +29,7 @@ const Footer = () => {
               alt="logo-image"
               width={{ base: "5.5rem", md: "7rem" }}
               h="100%"
-              mx={{ base: "auto", md: "0" }} // ✅ center logo on mobile
+              mx={{ base: "auto", md: "0" }}
             />
             <Text fontSize="sm" maxW="300px" mt={2}>
               Consulting & Services – Driving Innovation, Delivering Trust.

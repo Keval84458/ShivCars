@@ -60,13 +60,12 @@ const CreateNewCarForm = () => {
       });
 
       const res = await addNewCar(formDataToSend);
-      console.log("res", res.data);
-
       router.push(CAR_SUBPAGE_KEY.NEW_CAR);
     } catch (err) {
       console.error("Error:", err);
     }
   };
+
   const handleBack = () => {
     setFormData({
       carImage: null,
