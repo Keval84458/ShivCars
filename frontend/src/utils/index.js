@@ -1,4 +1,4 @@
-const { Box, Input } = require("@chakra-ui/react");
+const { Box, Input, Textarea, Select } = require("@chakra-ui/react");
 
 export const PageWrapper = ({ children, ...rest }) => {
   return (
@@ -10,4 +10,16 @@ export const PageWrapper = ({ children, ...rest }) => {
 
 export const ThemeInput = ({ ...rest }) => {
   return <Input {...rest} />;
+};
+
+export const ThemeTextArea = ({ ...rest }) => {
+  return <Textarea {...rest} />;
+};
+
+export const ThemeSelect = ({ children, ...rest }) => {
+  return (
+    <Select placeholder="Select Car" {...rest}>
+      {children}
+    </Select>
+  );
 };

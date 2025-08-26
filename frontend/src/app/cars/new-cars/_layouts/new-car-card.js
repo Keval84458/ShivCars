@@ -2,50 +2,166 @@
 import React from "react";
 import {
   Card,
-  CardHeader,
   CardBody,
-  CardFooter,
   Image,
   Stack,
   Heading,
   Text,
-  Divider,
-  ButtonGroup,
   Button,
+  Badge,
+  Flex,
+  Box,
 } from "@chakra-ui/react";
+import Link from "next/link";
+import { NEW_CAR_SUBPAGE_KEY } from "@/utils/constant";
+import { IoCallSharp } from "react-icons/io5";
+import { FaRupeeSign } from "react-icons/fa";
+import { IoInformationCircle } from "react-icons/io5";
+import { GrStatusGood } from "react-icons/gr";
+import { FaCar, FaDownload } from "react-icons/fa";
+import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
+const NewCarCard = ({ carData }) => {
+  const router = useRouter();
 
-const NewCarCard = () => {
+  const handleCarDetailPage = (carDetails) => {
+    if (carDetails.status === "Booked") {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "This car already Booked",
+      });
+    } else if (carDetails.status === "Sold") {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "This car already Sold",
+      });
+    } else {
+      router.push(`${NEW_CAR_SUBPAGE_KEY.CAR_DETAILS}?id=${carDetails.id}`);
+    }
+  };
   return (
-    <Card maxW="sm">
+    <Card
+      maxW="sm"
+      border="2px"
+      borderColor="transparent"
+      transition="all .5s ease"
+      _hover={{ border: "2px", borderColor: "primary.300" }}
+      mx={{ base: "auto", sm: "0" }}
+    >
       <CardBody>
         <Image
-          src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-          alt="Green double couch with wooden legs"
+          src={"http://localhost:8001" + carData.carImage}
+          alt={carData.carName || "Car Image"}
           borderRadius="lg"
+          mx="auto"
+          w="100%"
+          h="175px"
         />
+
         <Stack mt="6" spacing="3">
-          <Heading size="md">Living room Sofa</Heading>
-          <Text>
-            This sofa is perfect for modern tropical spaces, baroque inspired
-            spaces, earthy toned spaces and for people who love a chic design
-            with a sprinkle of vintage design.
-          </Text>
-          <Text color="blue.600" fontSize="2xl">
-            $450
-          </Text>
+          <Heading
+            fontSize={{
+              base: "1.7rem",
+              sm: "1.04rem",
+              md: ".9rem",
+              lg: "1.15rem",
+            }}
+            as={Flex}
+            alignItems="center"
+            gap={1}
+          >
+            <FaCar />
+            {carData.carName}
+          </Heading>
+          <Flex gap={2}>
+            <Text
+              color="primary.500"
+              fontSize={{
+                base: "1.8rem",
+                sm: "1.04rem",
+                md: ".9rem",
+                lg: "1.5rem",
+              }}
+              as={Flex}
+              alignItems="center"
+            >
+              <FaRupeeSign size="1rem" /> {carData.price}
+            </Text>
+
+            <Text as={Flex} alignItems="center" gap={1}>
+              <GrStatusGood />
+              {carData.status === "Available" ? (
+                <Badge
+                  bg="green.115"
+                  color="white.100"
+                  my="auto"
+                  p="3px"
+                  fontSize=".5rem"
+                  rounded="md"
+                >
+                  {carData.status}
+                </Badge>
+              ) : carData.status === "Sold" ? (
+                <Badge
+                  bg="red.66"
+                  color="white.100"
+                  my="auto"
+                  p="3px"
+                  fontSize=".5rem"
+                  rounded="md"
+                >
+                  {carData.status}
+                </Badge>
+              ) : carData.status === "Booked" ? (
+                <Badge
+                  bg="yellow.spark"
+                  my="auto"
+                  p="3px"
+                  fontSize=".5rem"
+                  rounded="md"
+                >
+                  {carData.status}
+                </Badge>
+              ) : (
+                carData.status === "Pending" && (
+                  <Badge
+                    bg="blue.200"
+                    my="auto"
+                    p="3px"
+                    fontSize=".5rem"
+                    rounded="md"
+                  >
+                    {carData.status}
+                  </Badge>
+                )
+              )}
+            </Text>
+          </Flex>
+
+          <Box gap={2} display={{ base: "flex", sm: "block", lg: "flex" }}>
+            <Text>{carData.regNo}</Text>
+            <Text gap={1} as={Flex} alignItems="center">
+              <IoCallSharp />
+              {carData.contactNo}
+            </Text>
+          </Box>
         </Stack>
+
+        <Box display={{ base: "flex" }} mt={2} gap={2}>
+          <Button
+            bg="blue.200"
+            size={{ base: "sm", md: "md", lg: "sm" }}
+            gap={1}
+            _hover={{ bg: "blue.200" }}
+            _disabled={{ bg: "blue.200" }}
+            onClick={() => handleCarDetailPage(carData)}
+          >
+            <IoInformationCircle size="1.2rem" /> More Details
+          </Button>
+        </Box>
       </CardBody>
-      <Divider />
-      <CardFooter>
-        <ButtonGroup spacing="2">
-          <Button variant="solid" colorScheme="blue">
-            Buy now
-          </Button>
-          <Button variant="ghost" colorScheme="blue">
-            Add to cart
-          </Button>
-        </ButtonGroup>
-      </CardFooter>
     </Card>
   );
 };

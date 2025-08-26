@@ -69,8 +69,9 @@ const theme = extendTheme({
     },
 
     blue: {
-      100: "#7CC3F5",
-      200: "#369DE6",
+      100: "#2a5472ff",
+      200: "#054d91ff",
+      300: "#103353ff",
       gradient1: "linear-gradient(90deg,#7cc3f5,#c4abee 54%,#faa9ba)",
     },
     pink: {

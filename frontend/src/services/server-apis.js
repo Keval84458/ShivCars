@@ -14,3 +14,46 @@ export const handleSignup = async (payload) => {
     throw err;
   }
 };
+
+export const getAllNewCars = async () => {
+  try {
+    const response = await axios.get("http://localhost:8001/api/cars");
+    console.log("response");
+    return response.data || null;
+  } catch (err) {
+    console.log("err", err);
+  }
+};
+
+export const getAllCarCompony = async () => {
+  try {
+    const response = await axios.get("http://localhost:8001/api/car-compony");
+    console.log("response");
+    return response.data;
+  } catch (err) {
+    console.log("err", err);
+  }
+};
+
+export const addNewCar = async (payload) => {
+  try {
+    const res = await axios.post("http://localhost:8001/api/cars", payload, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return res.data;
+  } catch (err) {
+    console.log("Error in addNewCar:", err);
+  }
+};
+
+export const getCarById = async (id) => {
+  try {
+    const response = await axios.get(`http://localhost:8001/api/cars/${id}`);
+    console.log("response", response);
+    return response.data;
+  } catch (err) {
+    console.log("err", err);
+  }
+};

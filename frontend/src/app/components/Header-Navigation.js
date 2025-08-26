@@ -29,9 +29,7 @@ const HeaderNavigation = () => {
     {
       title: "Cars",
       options: [
-        { title: "New Cars", link: CAR_SUBPAGE_KEY.NEW_CAR },
-        { title: "Used Cars", link: CAR_SUBPAGE_KEY.USED_CAR },
-        { title: "Compare Cars", link: CAR_SUBPAGE_KEY.COMPARE_CARS },
+        { title: "All Cars", link: CAR_SUBPAGE_KEY.NEW_CAR },
         { title: "Car Valuation", link: CAR_SUBPAGE_KEY.CAR_VALUATION },
       ],
     },

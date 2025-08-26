@@ -7,9 +7,9 @@ import CarForm from "./components/extra";
 const page = () => {
   return (
     <PageWrapper>
-      {/* <HeroSection /> */}
-      <CarForm />
-      {/* <Footer /> */}
+      <HeroSection />
+      {/* <CarForm /> */}
+      <Footer />
     </PageWrapper>
   );
 };

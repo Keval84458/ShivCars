@@ -7,7 +7,7 @@ const useLogin = require("./routes/login");
 const useAuthenticated = require("./routes/authenticated");
 const useLogout = require("./routes/logout");
 const cookieParser = require("cookie-parser");
-const useImgUpload = require("./routes/imgUpload");
+const useImgUpload = require("./routes/allCars");
 const useCarCompony = require("./routes/carCompony");
 
 dotenv.config();

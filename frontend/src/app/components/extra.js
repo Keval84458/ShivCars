@@ -12,6 +12,8 @@ function CarForm() {
     price: "",
     contactNo: "",
     status: "",
+    owner: "",
+    description: "",
   });
 
   const handleSubmit = async () => {
@@ -86,6 +88,18 @@ function CarForm() {
         placeholder="Status"
         value={formData.status}
         onChange={(e) => onChange("status", e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Status"
+        value={formData.owner}
+        onChange={(e) => onChange("owner", e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Status"
+        value={formData.description}
+        onChange={(e) => onChange("description", e.target.value)}
       />
 
       <input
