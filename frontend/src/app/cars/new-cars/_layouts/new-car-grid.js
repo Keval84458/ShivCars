@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ThemeInput } from "@/utils";
 import {
   Box,
@@ -10,16 +10,34 @@ import {
   InputGroup,
   InputRightElement,
   SimpleGrid,
+  Spinner,
+  Center,
+  Text,
 } from "@chakra-ui/react";
 import { FaSearch, FaArrowAltCircleLeft, FaDownload } from "react-icons/fa";
 import NewCarCard from "./new-car-card";
-import { MdCreate } from "react-icons/md";
 import Link from "next/link";
 import { CAR_SUBPAGE_KEY, PAGE_PATH_KEYS } from "@/utils/constant";
 
 const NewCarGrid = ({ allCars }) => {
+  const [loading, setLoading] = useState(true);
+  const [cars, setCars] = useState([]);
+
+  useEffect(() => {
+    // Simulate API delay or real fetching
+    if (allCars?.cars) {
+      setTimeout(() => {
+        setCars(allCars.cars);
+        setLoading(false);
+      }, 800); // small delay for smoother UX
+    } else {
+      setLoading(false);
+    }
+  }, [allCars]);
+
   return (
     <Box>
+      {/* Top Bar */}
       <Box
         display={{ md: "flex" }}
         alignItems="center"
@@ -31,7 +49,7 @@ const NewCarGrid = ({ allCars }) => {
             href={PAGE_PATH_KEYS.HOME}
             size="md"
             variant="ghost"
-            aria-label="Toggle Password"
+            aria-label="Go Back"
             bg="primary.600"
             color="white.100"
             icon={<FaArrowAltCircleLeft size="1.4rem" />}
@@ -40,12 +58,12 @@ const NewCarGrid = ({ allCars }) => {
           />
           <FormControl isRequired>
             <InputGroup w="100%">
-              <ThemeInput id="password" type="text" placeholder="Search" />
+              <ThemeInput id="search" type="text" placeholder="Search" />
               <InputRightElement>
                 <IconButton
                   size="lg"
                   variant="ghost"
-                  aria-label="Toggle Password"
+                  aria-label="Search"
                   icon={<FaSearch />}
                   _hover={{ bg: "transparent" }}
                 />
@@ -67,30 +85,37 @@ const NewCarGrid = ({ allCars }) => {
           >
             Booking <FaDownload />
           </Button>
-          {/* <Button
-            as={Link}
-            href={NEW_CAR_SUBPAGE_KEY.CREATE_NEW_CAR}
-            mt={{ base: ".5rem", md: "0" }}
-            bg="primary.700"
-            color="white.100"
-            size="sm"
-            _hover={{ bg: "primary.700" }}
-            _disabled={{ bg: "primary.700" }}
-            gap={1}
-          >
-            Create New <MdCreate size="1.2rem" />
-          </Button> */}
         </Flex>
       </Box>
-      <Box mt={2}>
-        <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 4 }} spacing={2}>
-          {allCars.cars &&
-            allCars.cars.map((carData, inx, arr) => (
-              <Box key={inx}>
-                <NewCarCard carData={carData} />
-              </Box>
-            ))}
-        </SimpleGrid>
+
+      {/* Cars Grid */}
+      <Box mt={4}>
+        {loading ? (
+          <Center py={10} flexDirection="column" gap={3}>
+            <Spinner size="xl" color="primary.600" thickness="4px" />
+            <Text fontSize="lg" color="gray.600">
+              Loading cars...
+            </Text>
+          </Center>
+        ) : cars.length > 0 ? (
+          <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 4 }} spacing={2}>
+            {cars
+              .filter(
+                (data) => data.status !== "Sold" && data.status !== "Pending"
+              )
+              .map((carData, inx) => (
+                <Box key={inx}>
+                  <NewCarCard carData={carData} />
+                </Box>
+              ))}
+          </SimpleGrid>
+        ) : (
+          <Center py={10}>
+            <Text fontSize="lg" color="gray.500">
+              No cars available 🚗
+            </Text>
+          </Center>
+        )}
       </Box>
     </Box>
   );

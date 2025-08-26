@@ -79,7 +79,7 @@ const getAllNewCars = async (req, res) => {
   try {
     const db = await connectionToMySql();
 
-    const [rows] = await db.query("SELECT * FROM allcars ");
+    const [rows] = await db.query("SELECT * FROM allcars ORDER BY id DESC");
 
     return res.status(200).json({
       success: true,

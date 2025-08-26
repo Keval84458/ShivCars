@@ -57,3 +57,38 @@ export const getCarById = async (id) => {
     console.log("err", err);
   }
 };
+
+export const handleCarBooking = async (payload) => {
+  try {
+    const response = await axios.post(
+      "http://localhost:8001/api/car-booking",
+      payload
+    );
+    console.log("response", response);
+    return response.data;
+  } catch (err) {
+    console.log("err", err);
+  }
+};
+
+export const handlegetAllCarBookings = async () => {
+  try {
+    const res = await axios.get("http://localhost:8001/api/car-booking");
+    console.log("res", res);
+    return res.data;
+  } catch (err) {
+    console.log("err", err);
+  }
+};
+
+export const handleBookedCarDeleteById = async (carId) => {
+  try {
+    const response = await axios.delete(
+      `http://localhost:8001/api/car-booking/${carId}`
+    );
+    console.log("response", response);
+    return response.data;
+  } catch (err) {
+    console.log("err", err);
+  }
+};

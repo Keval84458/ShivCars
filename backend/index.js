@@ -9,6 +9,7 @@ const useLogout = require("./routes/logout");
 const cookieParser = require("cookie-parser");
 const useImgUpload = require("./routes/allCars");
 const useCarCompony = require("./routes/carCompony");
+const useCarBooking = require("./routes/car-booking");
 
 dotenv.config();
 const app = express();
@@ -47,7 +48,8 @@ app
   .use("/api/authenticated", useAuthenticated)
   .use("/api/logout", useLogout)
   .use("/api/cars", useImgUpload)
-  .use("/api/car-compony", useCarCompony);
+  .use("/api/car-compony", useCarCompony)
+  .use("/api/car-booking", useCarBooking);
 
 app.listen(process.env.PORT, () =>
   console.log(`Server Started at 0.0.0.0 localhost:${process.env.PORT}`)

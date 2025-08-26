@@ -20,27 +20,7 @@ import { IoInformationCircle } from "react-icons/io5";
 import { GrStatusGood } from "react-icons/gr";
 import { FaCar, FaDownload } from "react-icons/fa";
 import { useRouter } from "next/navigation";
-import Swal from "sweetalert2";
 const NewCarCard = ({ carData }) => {
-  const router = useRouter();
-
-  const handleCarDetailPage = (carDetails) => {
-    if (carDetails.status === "Booked") {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "This car already Booked",
-      });
-    } else if (carDetails.status === "Sold") {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "This car already Sold",
-      });
-    } else {
-      router.push(`${NEW_CAR_SUBPAGE_KEY.CAR_DETAILS}?id=${carDetails.id}`);
-    }
-  };
   return (
     <Card
       maxW="sm"
@@ -63,10 +43,10 @@ const NewCarCard = ({ carData }) => {
         <Stack mt="6" spacing="3">
           <Heading
             fontSize={{
-              base: "1.7rem",
-              sm: "1.04rem",
-              md: ".9rem",
-              lg: "1.15rem",
+              base: "1.5rem",
+              sm: ".9rem",
+              md: "1rem",
+              lg: "1rem",
             }}
             as={Flex}
             alignItems="center"
@@ -114,16 +94,6 @@ const NewCarCard = ({ carData }) => {
                 >
                   {carData.status}
                 </Badge>
-              ) : carData.status === "Booked" ? (
-                <Badge
-                  bg="yellow.spark"
-                  my="auto"
-                  p="3px"
-                  fontSize=".5rem"
-                  rounded="md"
-                >
-                  {carData.status}
-                </Badge>
               ) : (
                 carData.status === "Pending" && (
                   <Badge
@@ -151,6 +121,8 @@ const NewCarCard = ({ carData }) => {
 
         <Box display={{ base: "flex" }} mt={2} gap={2}>
           <Button
+            as={Link}
+            href={`${NEW_CAR_SUBPAGE_KEY.CAR_DETAILS}?id=${carData.id}`}
             bg="blue.200"
             size={{ base: "sm", md: "md", lg: "sm" }}
             gap={1}

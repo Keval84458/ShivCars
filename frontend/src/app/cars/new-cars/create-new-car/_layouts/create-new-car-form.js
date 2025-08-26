@@ -178,7 +178,6 @@ const CreateNewCarForm = () => {
               >
                 <option value="available">Available</option>
                 <option value="sold">Sold</option>
-                <option value="booked">Booked</option>
                 <option value="pending">Pending</option>
               </Select>
             </FormControl>
