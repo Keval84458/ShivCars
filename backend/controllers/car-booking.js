@@ -47,6 +47,7 @@ const hadleCarBooking = async (req, res) => {
     await db.query(`UPDATE allcars SET status="Sold" WHERE id=?`, [car_id]);
     const [rows] = await db.query("SELECT * FROM allcars WHERE id=?", [car_id]);
     const user = rows[0];
+
     try {
       const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",

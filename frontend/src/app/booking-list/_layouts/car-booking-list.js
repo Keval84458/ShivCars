@@ -92,7 +92,7 @@ const CarBookingList = () => {
           _hover={{ bg: "primary.500" }}
           _disabled={{ bg: "primary.500" }}
         >
-          Create New <FaPen />
+          Create New Car <FaPen />
         </Button>
       </Box>
       <Text

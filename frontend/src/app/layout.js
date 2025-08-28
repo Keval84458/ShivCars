@@ -2,8 +2,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ChakraProvider from "@/Chakra-UI/Chakra-Provider";
 import HeaderNavigation from "./components/Header-Navigation";
-import { ToastContainer } from "react-toastify";
 import { AuthProvider } from "@/context/AuthProvider";
+import ToastProvider from "@/utils/toast-container";
+import { ColorModeScript } from "@chakra-ui/react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,11 +28,8 @@ export default function RootLayout({ children }) {
           <AuthProvider>
             <HeaderNavigation />
             {children}
-            <ToastContainer
-              position="top-right"
-              autoClose={1500}
-              theme="colored"
-            />
+            <ToastProvider />
+            <ColorModeScript />
           </AuthProvider>
         </ChakraProvider>
       </body>

@@ -10,6 +10,12 @@ const cookieParser = require("cookie-parser");
 const useImgUpload = require("./routes/allCars");
 const useCarCompony = require("./routes/carCompony");
 const useCarBooking = require("./routes/car-booking");
+const useCarValuation = require("./routes/carValuation");
+const useInsurance = require("./routes/insurance");
+const useFinance = require("./routes/finance");
+const useServiceBooking = require("./routes/serviceBooking");
+const useSearchCarFilter = require("./routes/searchCarFilter");
+const useContactForm = require("./routes/contactForm");
 
 dotenv.config();
 const app = express();
@@ -49,7 +55,13 @@ app
   .use("/api/logout", useLogout)
   .use("/api/cars", useImgUpload)
   .use("/api/car-compony", useCarCompony)
-  .use("/api/car-booking", useCarBooking);
+  .use("/api/car-booking", useCarBooking)
+  .use("/api/car-valuation", useCarValuation)
+  .use("/api/insurance", useInsurance)
+  .use("/api/finance", useFinance)
+  .use("/api/service-booking", useServiceBooking)
+  .use("/api", useSearchCarFilter)
+  .use("/api/contact", useContactForm);
 
 app.listen(process.env.PORT, () =>
   console.log(`Server Started at 0.0.0.0 localhost:${process.env.PORT}`)

@@ -7,7 +7,6 @@ const page = () => {
   return (
     <PageWrapper>
       <HeroSection />
-      =
       <Footer />
     </PageWrapper>
   );

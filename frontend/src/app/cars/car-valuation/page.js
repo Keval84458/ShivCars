@@ -1,13 +1,10 @@
-import { PageWrapper } from "@/utils";
-import { Box, Text } from "@chakra-ui/react";
 import React from "react";
-
+import { PageWrapper } from "@/utils";
+import CarValuationForm from "./_layouts/car-valuation-form";
 const CarValuation = () => {
   return (
-    <PageWrapper>
-      <Box>
-        <Text>Thsi is Car Valuation</Text>
-      </Box>
+    <PageWrapper p={1}>
+      <CarValuationForm />
     </PageWrapper>
   );
 };

@@ -85,3 +85,64 @@ export const handleBookedCarDeleteById = async (carId) => {
     console.log("err", err);
   }
 };
+
+export const handleGetAllCarValuation = async () => {
+  try {
+    const response = await axios.get("http://localhost:8001/api/car-valuation");
+    console.log("response", response.data);
+    return response.data;
+  } catch (err) {
+    console.log("err", err);
+  }
+};
+
+export const handleCreateInsurance = async (payload) => {
+  try {
+    const responce = await axios.post(
+      "http://localhost:8001/api/insurance",
+      payload
+    );
+    console.log("response", responce);
+    return responce.data;
+  } catch (err) {
+    console.log("err", err);
+  }
+};
+
+export const handleCreateFinance = async (payload) => {
+  try {
+    const response = await axios.post(
+      "http://localhost:8001/api/finance",
+      payload
+    );
+    console.log("response", response);
+    return response.data;
+  } catch (err) {
+    console.log("err", err);
+  }
+};
+
+export const handleCarSearchFilter = async (payload) => {
+  try {
+    const response = await axios.get("http://localhost:8001/api/search-car", {
+      params: payload,
+    });
+    return response.data;
+  } catch (err) {
+    console.error("API error:", err?.response?.data || err.message);
+    throw err;
+  }
+};
+
+export const handleContactForm = async (payload) => {
+  try {
+    const response = await axios.post(
+      "http://localhost:8001/api/contact",
+      payload
+    );
+    console.log("response", response);
+    return response.data;
+  } catch (err) {
+    console.log("Err", err);
+  }
+};

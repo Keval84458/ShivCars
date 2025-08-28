@@ -21,6 +21,7 @@ import { handleSignup } from "@/services/server-apis";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const SignUpForm = () => {
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -45,6 +46,7 @@ const SignUpForm = () => {
     } else {
       if (formData.password === formData.confirmPassword) {
         try {
+          setLoading(true);
           const { confirmPassword, ...payload } = formData;
           const response = await handleSignup(payload);
           if (response.status === 201) {
@@ -55,6 +57,8 @@ const SignUpForm = () => {
           }
         } catch (err) {
           toast.error("Something went wrong...");
+        } finally {
+          setLoading(false);
         }
       } else {
         toast.warn("Confirm Password does not match...");
@@ -68,18 +72,20 @@ const SignUpForm = () => {
       mx="auto"
       mt={{ base: 6, md: 12 }}
       p={{ base: 5, md: 8 }}
-      borderRadius="2xl"
+      rounded="2xl"
+      border="2px"
+      borderColor="primary.300"
       bg="white"
       boxShadow="2xl"
       _hover={{ boxShadow: "xl" }}
       transition="all 0.3s ease"
     >
       <Heading
-        size={useBreakpointValue({ base: "md", md: "lg" })}
+        size="lg"
         mb={6}
+        color="primary.500"
+        fontWeight="extrabold"
         textAlign="center"
-        bgGradient="linear(to-r, blue.500, purple.500)"
-        bgClip="text"
       >
         Create Your Account
       </Heading>
@@ -160,13 +166,15 @@ const SignUpForm = () => {
         </FormControl>
 
         <Button
-          colorScheme="blue"
+          bg="primary.500"
+          color="white"
           w="full"
           mt={3}
           size="md"
           borderRadius="full"
-          _hover={{ bgGradient: "linear(to-r, blue.600, purple.600)" }}
+          _hover={{ bg: "primary.500", transform: "scale(1.05)" }}
           onClick={handleSignUpForm}
+          isLoading={loading}
         >
           Sign Up
         </Button>
@@ -175,7 +183,7 @@ const SignUpForm = () => {
           Already have an account?{" "}
           <Text
             as="span"
-            color="blue.500"
+            color="primary.500"
             fontWeight="semibold"
             cursor="pointer"
             onClick={() => router.push(PAGE_PATH_KEYS.LOGIN)}

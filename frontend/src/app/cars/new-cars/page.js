@@ -7,7 +7,7 @@ const NewCars = async () => {
   const allCars = await getAllNewCars();
 
   return (
-    <PageWrapper p={2}>
+    <PageWrapper p={2} bg="secondary.50">
       <NewCarGrid allCars={allCars} />
     </PageWrapper>
   );

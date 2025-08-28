@@ -46,13 +46,11 @@ const NewCarCard = ({ carData }) => {
               base: "1.5rem",
               sm: ".9rem",
               md: "1rem",
-              lg: "1rem",
+              lg: "1.5rem",
             }}
             as={Flex}
-            alignItems="center"
             gap={1}
           >
-            <FaCar />
             {carData.carName}
           </Heading>
           <Flex gap={2}>

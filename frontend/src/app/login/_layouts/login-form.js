@@ -9,7 +9,6 @@ import {
   FormLabel,
   Heading,
   Text,
-  useBreakpointValue,
   VStack,
   Flex,
   InputGroup,
@@ -55,28 +54,21 @@ const LoginForm = () => {
   };
 
   return (
-    <Flex
-      align="center"
-      justify="center"
-      px={4}
-      maxW={useBreakpointValue({ base: "95%", sm: "420px" })}
-      mx="auto"
-      mt={{ base: 6, md: 12 }}
-      p={{ base: 5, md: 8 }}
-      borderRadius="2xl"
-      bg="white"
-      boxShadow="2xl"
-      _hover={{ boxShadow: "xl" }}
-      transition="all 0.3s ease"
-    >
-      <Box w="full" rounded="2xl">
-        <Heading
-          size={useBreakpointValue({ base: "lg", md: "xl" })}
-          mb={6}
-          textAlign="center"
-          bgGradient="linear(to-r, blue.500, purple.500)"
-          bgClip="text"
-        >
+    <Flex minH="80vh" align="center" justify="center" px={4}>
+      <Box
+        w="full"
+        maxW="420px"
+        p={{ base: 6, md: 8 }}
+        rounded="2xl"
+        border="2px"
+        borderColor="primary.300"
+        bg="white"
+        boxShadow="2xl"
+        textAlign="center"
+        _hover={{ boxShadow: "xl" }}
+        transition="all 0.3s ease"
+      >
+        <Heading size="xl" mb={6} color="primary.500" fontWeight="extrabold">
           Login
         </Heading>
 
@@ -119,22 +111,24 @@ const LoginForm = () => {
           </FormControl>
 
           <Button
-            colorScheme="blue"
+            bg="primary.500"
+            color="white"
             w="full"
             mt={3}
             size="md"
             borderRadius="full"
-            _hover={{ bgGradient: "linear(to-r, blue.600, purple.600)" }}
+            _hover={{ bg: "primary.500", transform: "scale(1.05)" }}
             onClick={handleLoginForm}
+            isLoading={loading}
           >
             Login
           </Button>
 
           <Text fontSize="sm" color="gray.600" textAlign="center">
-            Don’t have an account?
+            Don’t have an account?{" "}
             <Text
               as="span"
-              color="blue.500"
+              color="primary.500"
               fontWeight="semibold"
               cursor="pointer"
               onClick={() => router.push(PAGE_PATH_KEYS.SIGNUP)}

@@ -17,9 +17,5 @@ export const ThemeTextArea = ({ ...rest }) => {
 };
 
 export const ThemeSelect = ({ children, ...rest }) => {
-  return (
-    <Select placeholder="Select Car" {...rest}>
-      {children}
-    </Select>
-  );
+  return <Select {...rest}>{children}</Select>;
 };
