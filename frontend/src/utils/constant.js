@@ -7,14 +7,10 @@ export const PAGE_PATH_KEYS = {
   CONTACT: "/contact",
   LOGIN: "/login",
   SIGNUP: "/sign-up",
-  PROFILE: "/profile",
-  NEW_CARS: "/cars/new-cars",
 };
 
 export const CAR_SUBPAGE_KEY = {
   NEW_CAR: `${PAGE_PATH_KEYS.CARS}/new-cars`,
-  CAR_BOOKING: `${PAGE_PATH_KEYS.CARS}/car-booking`,
-  CAR_VALUATION: `${PAGE_PATH_KEYS.CARS}/car-valuation`,
 };
 
 export const SERVICES_SUBPAGE_KEY = {
@@ -31,12 +27,6 @@ export const BOOKING_SUBPAGE_KEY = {
 export const CONTACT_SUBPAGE_KEY = {
   CONTACT_FORM: `${PAGE_PATH_KEYS.CONTACT}/contact-form`,
   SERVICE_LOCATION: `${PAGE_PATH_KEYS.CONTACT}/service-location`,
-};
-
-export const PROFILE_SUBPAGE_KEY = {
-  MY_PROFILE: `${PAGE_PATH_KEYS.PROFILE}/my-profile`,
-  MY_CARS: `${PAGE_PATH_KEYS.PROFILE}/my-cars`,
-  MY_BOOKING: `${PAGE_PATH_KEYS.PROFILE}/my-booking`,
 };
 
 export const NEW_CAR_SUBPAGE_KEY = {

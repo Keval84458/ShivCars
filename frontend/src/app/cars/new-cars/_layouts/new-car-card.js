@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardBody,
@@ -11,124 +11,150 @@ import {
   Badge,
   Flex,
   Box,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalBody,
+  useDisclosure,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { NEW_CAR_SUBPAGE_KEY } from "@/utils/constant";
-import { IoCallSharp } from "react-icons/io5";
-import { FaRupeeSign } from "react-icons/fa";
-import { IoInformationCircle } from "react-icons/io5";
+import { FaRupeeSign, FaArrowCircleRight } from "react-icons/fa";
 import { GrStatusGood } from "react-icons/gr";
-import { FaCar } from "react-icons/fa";
+
+const getStatusBadge = (status) => {
+  const baseStyle = {
+    px: 2,
+    py: 1,
+    fontSize: "0.7rem",
+    rounded: "md",
+    fontWeight: "semibold",
+  };
+
+  switch (status) {
+    case "Available":
+      return (
+        <Badge {...baseStyle} bg="green.400" color="white">
+          {status}
+        </Badge>
+      );
+    case "Sold":
+      return (
+        <Badge {...baseStyle} bg="red.400" color="white">
+          {status}
+        </Badge>
+      );
+    case "Pending":
+      return (
+        <Badge {...baseStyle} bg="blue.400" color="white">
+          {status}
+        </Badge>
+      );
+    default:
+      return (
+        <Badge {...baseStyle} bg="gray.400" color="white">
+          Unknown
+        </Badge>
+      );
+  }
+};
 
 const NewCarCard = ({ carData }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
-    <Card
-      maxW="sm"
-      border="2px"
-      borderColor="transparent"
-      transition="all .5s ease"
-      _hover={{
-        border: "2px",
-        borderColor: "primary.300",
-      }}
-      mx={{ base: "auto", sm: "0" }}
-    >
-      <CardBody>
-        <Image
-          src={"http://localhost:8001" + carData.carImage}
-          alt={carData.carName || "Car Image"}
-          borderRadius="lg"
-          mx="auto"
-          w="100%"
-          h="175px"
-        />
+    <>
+      <Card
+        maxW="sm"
+        borderWidth="1px"
+        borderColor="gray.200"
+        transition="all .4s ease"
+        _hover={{
+          transform: "scale(1.04)",
+          boxShadow: "2xl",
+          borderColor: "primary.300",
+          bgGradient: "linear(to-b, white, gray.50)",
+        }}
+        mx={{ base: "auto", sm: "0" }}
+        rounded="xl"
+        overflow="hidden"
+        shadow="md"
+      >
+        <Box overflow="hidden" p={2} cursor="pointer" onClick={onOpen}>
+          <Image
+            src={"http://localhost:8001" + carData.carImage}
+            alt={carData.carName || "Car Image"}
+            w="100%"
+            h="200px"
+            objectFit="cover"
+            transition="all .4s ease"
+            rounded="2xl"
+            _hover={{ transform: "scale(1.1)" }}
+          />
+        </Box>
 
-        <Stack mt="6" spacing="3">
-          <Heading
-            fontSize={{
-              base: "1.5rem",
-              sm: ".9rem",
-              md: "1rem",
-              lg: "1.5rem",
-            }}
-            as={Flex}
-            gap={1}
-          >
-            {carData.carName}
-          </Heading>
-          <Flex gap={2}>
-            <Text
-              color="secondary.700"
-              fontSize={{
-                base: "1.8rem",
-                sm: "1.04rem",
-                md: "1.4rem",
-                lg: "1.5rem",
+        <CardBody>
+          <Stack spacing={3}>
+            <Heading fontSize={{ base: "1.2rem", md: "1.4rem" }} noOfLines={1}>
+              {carData.carName}
+            </Heading>
+
+            <Flex align="center" justify="space-between">
+              <Text
+                color="secondary.700"
+                fontSize={{ base: "1rem", md: "1.2rem" }}
+                fontWeight="bold"
+                display="flex"
+                alignItems="center"
+                gap={1}
+              >
+                <FaRupeeSign size="0.9rem" /> {carData.price}
+              </Text>
+              <Flex align="center" gap={1}>
+                <GrStatusGood />
+                {getStatusBadge(carData.status)}
+              </Flex>
+            </Flex>
+
+            <Button
+              as={Link}
+              href={`${NEW_CAR_SUBPAGE_KEY.CAR_DETAILS}?id=${carData.id}`}
+              mt={2}
+              w="100%"
+              bg="blue.500"
+              color="white"
+              size="sm"
+              gap={2}
+              transition="all .3s ease"
+              _hover={{
+                bg: "blue.600",
+                transform: "scale(1.05)",
+                boxShadow: "lg",
               }}
-              as={Flex}
-              alignItems="center"
             >
-              <FaRupeeSign size="1rem" /> {carData.price}
-            </Text>
+              More Details
+              <FaArrowCircleRight size="1rem" />
+            </Button>
+          </Stack>
+        </CardBody>
+      </Card>
 
-            <Text as={Flex} alignItems="center" gap={1}>
-              <GrStatusGood />
-              {carData.status === "Available" ? (
-                <Badge
-                  bg="green.115"
-                  color="white.100"
-                  my="auto"
-                  p="3px"
-                  fontSize=".5rem"
-                  rounded="md"
-                >
-                  {carData.status}
-                </Badge>
-              ) : carData.status === "Sold" ? (
-                <Badge
-                  bg="red.66"
-                  color="white.100"
-                  my="auto"
-                  p="3px"
-                  fontSize=".5rem"
-                  rounded="md"
-                >
-                  {carData.status}
-                </Badge>
-              ) : (
-                carData.status === "Pending" && (
-                  <Badge
-                    bg="blue.200"
-                    my="auto"
-                    p="3px"
-                    fontSize=".5rem"
-                    rounded="md"
-                  >
-                    {carData.status}
-                  </Badge>
-                )
-              )}
-            </Text>
-          </Flex>
-        </Stack>
-        <Button
-          as={Link}
-          href={`${NEW_CAR_SUBPAGE_KEY.CAR_DETAILS}?id=${carData.id}`}
-          mt={1}
-          w="100%"
-          bg="blue.400"
-          color="white.100"
-          size="sm"
-          gap={1}
-          transition="all .3s ease"
-          _hover={{ bg: "blue.500", transform: "scale(1.05)" }}
-          _disabled={{ bg: "blue.500" }}
-          onClick={() => handleCarDetailPage(carData)}
-        >
-          <IoInformationCircle size="1.2rem" /> More Details
-        </Button>
-      </CardBody>
-    </Card>
+      <Modal isOpen={isOpen} onClose={onClose} size="4xl" isCentered>
+        <ModalOverlay bg="rgba(0,0,0,0.6)" backdropFilter="blur(10px)" />
+        <ModalContent bg="transparent" shadow="none">
+          <ModalBody display="flex" justifyContent="center" alignItems="center">
+            <Image
+              src={"http://localhost:8001" + carData.carImage}
+              alt={carData.carName || "Car Image"}
+              w="400px"
+              h="300px"
+              borderRadius="lg"
+              boxShadow="2xl"
+            />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+    </>
   );
 };
 

@@ -27,14 +27,11 @@ import { IoHome } from "react-icons/io5";
 const HeaderNavigation = () => {
   const linkMenus = [
     {
-      title: "Cars",
-      options: [
-        { title: "All Cars", link: CAR_SUBPAGE_KEY.NEW_CAR },
-        { title: "Car Valuation", link: CAR_SUBPAGE_KEY.CAR_VALUATION },
-      ],
+      title: "CARS",
+      options: [{ title: "All Cars", link: CAR_SUBPAGE_KEY.NEW_CAR }],
     },
     {
-      title: "Services",
+      title: "SERVICES",
       options: [
         {
           title: "Insurance",
@@ -55,13 +52,13 @@ const HeaderNavigation = () => {
       ],
     },
     {
-      title: "Bookings",
+      title: "BOOKINGS",
       options: [
         { title: "Book a service", link: BOOKING_SUBPAGE_KEY.BOOK_SERVICE },
       ],
     },
     {
-      title: "Contact",
+      title: "CONTACT",
       options: [
         { title: "Contact Form", link: CONTACT_SUBPAGE_KEY.CONTACT_FORM },
         {
@@ -109,7 +106,7 @@ const HeaderNavigation = () => {
               color="white.100"
               _disabled={{ bg: "transparent", color: "white.100" }}
             >
-              <IoHome size="1.7rem" />
+              <IoHome size="1.4rem" />
             </Button>
 
             {linkMenus.map((menu, inx, arr) => {
@@ -125,7 +122,7 @@ const HeaderNavigation = () => {
                       _disabled={{ bg: "transparent", color: "white.100" }}
                       px={1}
                       _active={{ bg: "transparent", color: "white.100" }}
-                      fontSize=".9rem"
+                      fontSize=".8rem"
                     >
                       {menu.title}
                     </MenuButton>
@@ -156,9 +153,9 @@ const HeaderNavigation = () => {
               _hover={{ bg: "transparent", color: "white.100" }}
               color="white.100"
               _disabled={{ bg: "transparent", color: "white.100" }}
-              fontSize=".9rem"
+              fontSize=".8rem"
             >
-              About
+              ABOUT
             </Button>
           </Box>
         </Flex>

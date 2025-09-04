@@ -69,6 +69,8 @@ const CarDetailsCard = ({ carData }) => {
                   h={{ base: "180px", md: "240px" }}
                   objectFit="cover"
                   shadow="md"
+                  transition="all .5s ease"
+                  _hover={{ transform: "scale(1.1)" }}
                 />
               </Box>
 

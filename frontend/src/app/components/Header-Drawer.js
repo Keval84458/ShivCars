@@ -33,10 +33,7 @@ const HeaderDrawer = () => {
   const linkMenus = [
     {
       title: "Cars",
-      options: [
-        { title: "All Cars", link: CAR_SUBPAGE_KEY.NEW_CAR },
-        { title: "Car Valuation", link: CAR_SUBPAGE_KEY.CAR_VALUATION },
-      ],
+      options: [{ title: "All Cars", link: CAR_SUBPAGE_KEY.NEW_CAR }],
     },
     {
       title: "Services",

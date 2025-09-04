@@ -14,12 +14,16 @@ import {
   InputGroup,
   InputRightElement,
   IconButton,
+  Image,
 } from "@chakra-ui/react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthProvider";
 import { handleLogin } from "@/services/auth-apis";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import { RiLockPasswordFill } from "react-icons/ri";
+import { color } from "framer-motion";
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -54,47 +58,54 @@ const LoginForm = () => {
   };
 
   return (
-    <Flex minH="80vh" align="center" justify="center" px={4}>
+    <Flex alignItems="center" justify="center">
       <Box
-        w="full"
-        maxW="420px"
-        p={{ base: 6, md: 8 }}
-        rounded="2xl"
-        border="2px"
-        borderColor="primary.300"
-        bg="white"
-        boxShadow="2xl"
+        w="35%"
+        mx="3rem"
+        mt="3rem"
+        p={{ base: 6, md: 6 }}
         textAlign="center"
-        _hover={{ boxShadow: "xl" }}
         transition="all 0.3s ease"
+        boxShadow="lg"
+        rounded="md"
+        _hover={{ boxShadow: "2xl" }}
       >
-        <Heading size="xl" mb={6} color="primary.500" fontWeight="extrabold">
-          Login
-        </Heading>
-
-        <VStack spacing={5}>
+        <Box display="flex" justifyContent="center" alignItems="center">
+          <Image src="/assets/13078067.png" alt="##" w={120} />
+        </Box>
+        <VStack spacing={5} w="100%">
           <FormControl isRequired>
-            <FormLabel fontSize="sm" htmlFor="email">
-              Email
+            <FormLabel
+              fontSize="sm"
+              htmlFor="email"
+              display="flex"
+              alignItems="center"
+              gap={2}
+            >
+              <MdEmail size="1.1rem" /> Email
             </FormLabel>
             <ThemeInput
-              id="email"
               type="email"
-              placeholder="Enter your email"
+              placeholder="e.g ab@gmail.com"
               value={formData.email}
               onChange={(e) => onChange("email", e.target.value)}
             />
           </FormControl>
 
           <FormControl isRequired>
-            <FormLabel fontSize="sm" htmlFor="password">
-              Password
+            <FormLabel
+              fontSize="sm"
+              htmlFor="password"
+              display="flex"
+              alignItems="center"
+              gap={2}
+            >
+              <RiLockPasswordFill size="1.1rem" /> Password
             </FormLabel>
             <InputGroup>
               <ThemeInput
-                id="password"
+                placeholder="e.g 123456789"
                 type={showPassword ? "text" : "password"}
-                placeholder="Enter your password"
                 value={formData.password}
                 onChange={(e) => onChange("password", e.target.value)}
               />

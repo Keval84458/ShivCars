@@ -23,41 +23,54 @@ const AuthButtons = () => {
   return (
     <Box display="flex" gap={2}>
       {authenticated ? (
-        <>
-          <Button
-            backgroundColor="transparent"
-            _hover={{ bg: "transparent" }}
-            onClick={handleLogoutUser}
-            color="white.100"
-            size="sm"
-            border="1px"
-          >
-            Logout
-          </Button>
-        </>
+        <Button
+          bg="transparent"
+          fontFamily="sans-serif"
+          _hover={{
+            bg: "transparent",
+            boxShadow: "0 0 30px rgba(255, 255, 255, 0.7)",
+          }}
+          color="white.100"
+          size="sm"
+          border="1px"
+          rounded="full"
+          onClick={handleLogoutUser}
+        >
+          Logout
+        </Button>
       ) : (
         <>
           <Button
             as={Link}
-            href={PAGE_PATH_KEYS.LOGIN}
-            backgroundColor="transparent"
-            _hover={{ bg: "transparent" }}
+            href={PAGE_PATH_KEYS.SIGNUP}
+            bg="transparent"
+            fontFamily="sans-serif"
+            _hover={{
+              bg: "transparent",
+              boxShadow: "0 0 30px rgba(255, 255, 255, 0.7)",
+            }}
             color="white.100"
-            border="1px"
             size="sm"
+            border="1px"
+            rounded="full"
           >
-            Login
+            Sign-In
           </Button>
           <Button
             as={Link}
-            href={PAGE_PATH_KEYS.SIGNUP}
-            backgroundColor="transparent"
-            _hover={{ bg: "transparent" }}
+            href={PAGE_PATH_KEYS.LOGIN}
+            bg="transparent"
+            fontFamily="sans-serif"
+            _hover={{
+              bg: "transparent",
+              boxShadow: "0 0 30px rgba(255, 255, 255, 0.7)",
+            }}
             color="white.100"
-            border="1px"
             size="sm"
+            border="1px"
+            rounded="full"
           >
-            Signup
+            Login
           </Button>
         </>
       )}

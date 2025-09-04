@@ -35,14 +35,19 @@ const HeroSection = () => {
       }}
     >
       <Box position="relative" zIndex={1}>
-        <Text fontSize={{ base: "1.5rem", md: "2rem" }} lineHeight={2}>
-          Hey, Welcome to
+        <Text
+          fontSize={{ base: "1.5rem", md: "2rem" }}
+          lineHeight={2}
+          fontFamily="sans-serif"
+        >
+          Welcome to
         </Text>
 
         <Text
-          fontSize={{ base: "5rem", sm: "6rem", md: "10rem" }}
+          fontSize={{ base: "5rem", sm: "6rem", md: "11rem" }}
           lineHeight={1}
           fontWeight="bold"
+          fontFamily="serif"
         >
           SHIV
           <Text
@@ -58,6 +63,7 @@ const HeroSection = () => {
           display="flex"
           alignItems="center"
           justifyContent={{ base: "center", md: "flex-start" }}
+          fontFamily="sans-serif"
         >
           <Text fontSize={{ base: "1rem", md: "2rem" }} mr={2}>
             <Typewriter
@@ -82,7 +88,7 @@ const HeroSection = () => {
           fontSize={{ base: "1rem" }}
         >
           <Box p={{ base: 5, md: 0 }}>
-            <Text>
+            <Text fontFamily="sans-serif">
               At Shiv Cars Consulting & Services, we combine expertise with
               innovation to deliver reliable solutions. From personalized
               guidance to end-to-end services, we help drive your success
@@ -99,6 +105,7 @@ const HeroSection = () => {
             <Button
               as={Link}
               href={CAR_SUBPAGE_KEY.NEW_CAR}
+              fontFamily="sans-serif"
               border="2px solid"
               borderColor="whiteAlpha.700"
               bg="transparent"
@@ -118,6 +125,7 @@ const HeroSection = () => {
             <Button
               as={Link}
               href={CAR_SUBPAGE_KEY.CAR_BOOKING}
+              fontFamily="sans-serif"
               bg="transparent"
               border="2px solid"
               borderColor="whiteAlpha.700"
