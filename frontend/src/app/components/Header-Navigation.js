@@ -13,7 +13,6 @@ import React from "react";
 import HeaderDrawer from "./Header-Drawer";
 import Link from "next/link";
 import {
-  ABOUT_SUBPAGE_KEY,
   BOOKING_SUBPAGE_KEY,
   CAR_SUBPAGE_KEY,
   CONTACT_SUBPAGE_KEY,
@@ -106,7 +105,7 @@ const HeaderNavigation = () => {
               color="white.100"
               _disabled={{ bg: "transparent", color: "white.100" }}
             >
-              <IoHome size="1.4rem" />
+              <IoHome size="1.1rem" />
             </Button>
 
             {linkMenus.map((menu, inx, arr) => {

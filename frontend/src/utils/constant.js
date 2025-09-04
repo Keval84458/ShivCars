@@ -11,6 +11,7 @@ export const PAGE_PATH_KEYS = {
 
 export const CAR_SUBPAGE_KEY = {
   NEW_CAR: `${PAGE_PATH_KEYS.CARS}/new-cars`,
+  CAR_BOOKING: `${PAGE_PATH_KEYS.CARS}/car-booking`,
 };
 
 export const SERVICES_SUBPAGE_KEY = {
