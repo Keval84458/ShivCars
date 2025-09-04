@@ -1,7 +1,7 @@
 "use client";
 import NotLoggedIn from "@/app/components/not-logged-in";
 import { useAuth } from "@/context/AuthProvider";
-import { handleGetAllCarValuation } from "@/services/server-apis";
+import { handleGetAllCarValuation } from "@/services/other-apis";
 import { ThemeSelect } from "@/utils";
 import {
   Box,
@@ -133,6 +133,10 @@ const CarValuationForm = () => {
     setDetails(breakdown);
   };
 
+  const handlePrint = () => {
+    window.print();
+  };
+
   return (
     <>
       {authenticated ? (
@@ -155,6 +159,8 @@ const CarValuationForm = () => {
           >
             CAR VALUATION
           </Text>
+
+          {/* Form Inputs */}
           <HStack spacing={4} align="flex-end" wrap="wrap" mt={5}>
             <FormControl w="200px">
               <FormLabel>Car</FormLabel>
@@ -239,6 +245,7 @@ const CarValuationForm = () => {
             </Button>
           </HStack>
 
+          {/* Results */}
           {valuation && (
             <Box mt={6} p={4} borderWidth={1} borderRadius="md" bg="gray.50">
               <Text fontSize="xl" fontWeight="bold" color="teal.600">
@@ -255,6 +262,26 @@ const CarValuationForm = () => {
                 <Text>⛽ Fuel: {details.fuel}</Text>
                 <Text>🔧 Transmission: {details.transmission}</Text>
               </VStack>
+
+              <HStack spacing={4} mt={4}>
+                <Button
+                  bg="primary.500"
+                  color="white.100"
+                  onClick={handlePrint}
+                  rounded="full"
+                  size="sm"
+                  transition="all .5s ease"
+                  p={4}
+                  _hover={{
+                    bg: "primary.600",
+                    boxShadow: "lg",
+                    transform: "scale(1.1)",
+                  }}
+                  _disabled={{ bg: "primary.600" }}
+                >
+                  PDF/Print
+                </Button>
+              </HStack>
             </Box>
           )}
         </Box>

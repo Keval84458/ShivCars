@@ -10,9 +10,10 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { handleContactForm } from "@/services/server-apis";
+import { handleContactForm } from "@/services/other-apis";
 import { useAuth } from "@/context/AuthProvider";
 import NotLoggedIn from "@/app/components/not-logged-in";
+import { toast } from "react-toastify";
 
 const FormOfContact = () => {
   const { authenticated } = useAuth();
@@ -32,28 +33,39 @@ const FormOfContact = () => {
   };
 
   const handleSubmitContactForm = async () => {
-    try {
-      setLoading(true);
-      const payload = { ...formData };
-      const response = await handleContactForm(payload);
+    if (
+      !formData.customerName ||
+      !formData.email ||
+      !formData.mobileNo ||
+      !formData.location ||
+      !formData.contactDate ||
+      formData.about
+    ) {
+      toast.error("All fields are required...");
+    } else {
+      try {
+        setLoading(true);
+        const payload = { ...formData };
+        const response = await handleContactForm(payload);
 
-      if (response) {
-        setFormData({
-          customerName: "",
-          email: "",
-          mobileNo: "",
-          location: "",
-          contactDate: "",
-          about: "",
-        });
-        setNote(true);
-      } else {
-        console.log("Something went wrong:", response);
+        if (response) {
+          setFormData({
+            customerName: "",
+            email: "",
+            mobileNo: "",
+            location: "",
+            contactDate: "",
+            about: "",
+          });
+          setNote(true);
+        } else {
+          console.log("Something went wrong:", response);
+        }
+      } catch (err) {
+        console.log("Error submitting form:", err);
+      } finally {
+        setLoading(false);
       }
-    } catch (err) {
-      console.log("Error submitting form:", err);
-    } finally {
-      setLoading(false);
     }
   };
 

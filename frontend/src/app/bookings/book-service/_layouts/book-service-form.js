@@ -80,9 +80,8 @@ const BookServiceForm = () => {
           borderRadius="2xl"
           boxShadow="lg"
           bg="white"
-          _dark={{ bg: "gray.800" }}
         >
-          <Heading mb={6} textAlign="center" color="primary.700">
+          <Heading mb={6} textAlign="center" color="primary.500">
             Service Booking Form
           </Heading>
 
@@ -149,19 +148,23 @@ const BookServiceForm = () => {
               />
             </FormControl>
 
-            <Button
-              bg="primary.800"
-              color="white.100"
-              rounded="full"
-              size="md"
-              _hover={{ transform: "scale(1.02)" }}
-              transition="0.2s"
-              onClick={handleServiceBooking}
-              isLoading={loading}
-              loadingText="Submitting..."
-            >
-              SUBMIT
-            </Button>
+            <Box display="flex" justifyContent="center">
+              <Button
+                mt={4}
+                type="button"
+                bg="primary.500"
+                color="white.100"
+                size="md"
+                w="sm"
+                _hover={{ transform: "scale(1.02)", bg: "primary.600" }}
+                transition="0.2s"
+                onClick={handleServiceBooking}
+                isLoading={loading}
+                loadingText="Submitting..."
+              >
+                SUBMIT
+              </Button>
+            </Box>
           </VStack>
         </Box>
       ) : (

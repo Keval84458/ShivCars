@@ -1,6 +1,6 @@
 "use client";
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { isAuthenticated } from "@/services/client-apis";
+import { isAuthenticated } from "@/services/auth-apis";
 
 const AuthContext = createContext();
 

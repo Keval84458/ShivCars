@@ -18,7 +18,7 @@ import {
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthProvider";
-import { handleLogin } from "@/services/client-apis";
+import { handleLogin } from "@/services/auth-apis";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const LoginForm = () => {

@@ -13,7 +13,7 @@ import {
   CardBody,
   HStack,
 } from "@chakra-ui/react";
-import { getAllCarCompony, addNewCar } from "@/services/server-apis";
+import { getAllCarCompony, addNewCar } from "@/services/other-apis";
 import { useRouter } from "next/navigation";
 import { CAR_SUBPAGE_KEY } from "@/utils/constant";
 import Link from "next/link";

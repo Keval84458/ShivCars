@@ -18,7 +18,7 @@ import { FaSearch, FaArrowAltCircleLeft, FaDownload } from "react-icons/fa";
 import NewCarCard from "./new-car-card";
 import Link from "next/link";
 import { CAR_SUBPAGE_KEY, PAGE_PATH_KEYS } from "@/utils/constant";
-import { handleCarSearchFilter } from "@/services/server-apis";
+import { handleCarSearchFilter } from "@/services/other-apis";
 import { useAuth } from "@/context/AuthProvider";
 import NotLoggedIn from "@/app/components/not-logged-in";
 

@@ -11,7 +11,7 @@ const HeroSection = () => {
     <Box
       transition="all .5s ease"
       position="relative"
-      bgImage="url('/assets/hero image.jpg')"
+      bgImage="url('/assets/Piercing the Fog_ Night Drive.png')"
       bgSize="cover"
       bgPos="center"
       bgRepeat="no-repeat"
@@ -30,7 +30,7 @@ const HeroSection = () => {
         right: 0,
         bottom: 0,
         bg: "black",
-        opacity: 0.4,
+        opacity: 0,
         zIndex: 0,
       }}
     >
@@ -58,14 +58,13 @@ const HeroSection = () => {
           display="flex"
           alignItems="center"
           justifyContent={{ base: "center", md: "flex-start" }}
-          mt={4}
         >
-          <Text fontSize={{ base: "1rem", md: "1.5rem" }} mr={2}>
+          <Text fontSize={{ base: "1rem", md: "2rem" }} mr={2}>
             <Typewriter
               words={["Consulting and Services"]}
               loop={0}
               cursor
-              cursorStyle="_"
+              cursorStyle="__"
               typeSpeed={80}
               deleteSpeed={80}
               delaySpeed={100}
@@ -74,7 +73,7 @@ const HeroSection = () => {
           <Image
             src="/assets/0-Car-Sports-Car-3840x2160-unscreen.gif"
             alt="GIF Image"
-            width={{ base: "5rem", md: "12rem" }}
+            width={{ base: "5rem", md: "14rem" }}
           />
         </Box>
         <Box
@@ -109,9 +108,9 @@ const HeroSection = () => {
               rounded="full"
               px={6}
               _hover={{
-                bg: "whiteAlpha.200",
+                bg: "white.200",
                 transform: "scale(1.08)",
-                boxShadow: "0px 0px 15px rgba(255,255,255,0.3)",
+                boxShadow: "0px 0px 30px rgba(255,255,255,0.3)",
               }}
             >
               <FaCar /> VIEW ALL CARS
@@ -130,7 +129,7 @@ const HeroSection = () => {
               _hover={{
                 bg: "whiteAlpha.200",
                 transform: "scale(1.08)",
-                boxShadow: "0px 0px 15px rgba(255,255,255,0.3)",
+                boxShadow: "0px 0px 30px rgba(255,255,255,0.3)",
               }}
             >
               <FaDownload size=".9rem" /> CAR BOOKING

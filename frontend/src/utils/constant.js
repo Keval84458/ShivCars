@@ -28,10 +28,6 @@ export const BOOKING_SUBPAGE_KEY = {
   BOOK_SERVICE: `${PAGE_PATH_KEYS.BOOKINGS}/book-service`,
 };
 
-export const ABOUT_SUBPAGE_KEY = {
-  WHO_WE_ARE: `${PAGE_PATH_KEYS.ABOUT}/who-we-are`,
-};
-
 export const CONTACT_SUBPAGE_KEY = {
   CONTACT_FORM: `${PAGE_PATH_KEYS.CONTACT}/contact-form`,
   SERVICE_LOCATION: `${PAGE_PATH_KEYS.CONTACT}/service-location`,

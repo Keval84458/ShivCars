@@ -1,7 +1,7 @@
 import React from "react";
 import CarBookingForm from "./_layouts/car-booking-form";
 import { PageWrapper } from "@/utils";
-import { getAllNewCars } from "@/services/server-apis";
+import { getAllNewCars } from "@/services/other-apis";
 
 const CarBookings = async () => {
   return (

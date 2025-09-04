@@ -1,14 +1,14 @@
 import { PageWrapper } from "@/utils";
 import React from "react";
 import CarDetailsCard from "./_layouts/car-details-card";
-import { getCarById } from "@/services/server-apis";
+import { getCarById } from "@/services/other-apis";
 
 const CarDetails = async ({ searchParams }) => {
   const { id: carId } = await searchParams;
   const carData = await getCarById(carId);
 
   return (
-    <PageWrapper p={1}>
+    <PageWrapper p={1} bg="secondary.50">
       <CarDetailsCard carData={carData} />
     </PageWrapper>
   );

@@ -27,7 +27,10 @@ const NewCarCard = ({ carData }) => {
       border="2px"
       borderColor="transparent"
       transition="all .5s ease"
-      _hover={{ border: "2px", borderColor: "primary.300" }}
+      _hover={{
+        border: "2px",
+        borderColor: "primary.300",
+      }}
       mx={{ base: "auto", sm: "0" }}
     >
       <CardBody>
@@ -55,11 +58,11 @@ const NewCarCard = ({ carData }) => {
           </Heading>
           <Flex gap={2}>
             <Text
-              color="primary.500"
+              color="secondary.700"
               fontSize={{
                 base: "1.8rem",
                 sm: "1.04rem",
-                md: ".9rem",
+                md: "1.4rem",
                 lg: "1.5rem",
               }}
               as={Flex}
@@ -107,30 +110,23 @@ const NewCarCard = ({ carData }) => {
               )}
             </Text>
           </Flex>
-
-          <Box gap={2} display={{ base: "flex", sm: "block", lg: "flex" }}>
-            <Text>{carData.regNo}</Text>
-            <Text gap={1} as={Flex} alignItems="center">
-              <IoCallSharp />
-              {carData.contactNo}
-            </Text>
-          </Box>
         </Stack>
-
-        <Box display={{ base: "flex" }} mt={2} gap={2}>
-          <Button
-            as={Link}
-            href={`${NEW_CAR_SUBPAGE_KEY.CAR_DETAILS}?id=${carData.id}`}
-            bg="blue.200"
-            size={{ base: "sm", md: "md", lg: "sm" }}
-            gap={1}
-            _hover={{ bg: "blue.200" }}
-            _disabled={{ bg: "blue.200" }}
-            onClick={() => handleCarDetailPage(carData)}
-          >
-            <IoInformationCircle size="1.2rem" /> More Details
-          </Button>
-        </Box>
+        <Button
+          as={Link}
+          href={`${NEW_CAR_SUBPAGE_KEY.CAR_DETAILS}?id=${carData.id}`}
+          mt={1}
+          w="100%"
+          bg="blue.400"
+          color="white.100"
+          size="sm"
+          gap={1}
+          transition="all .3s ease"
+          _hover={{ bg: "blue.500", transform: "scale(1.05)" }}
+          _disabled={{ bg: "blue.500" }}
+          onClick={() => handleCarDetailPage(carData)}
+        >
+          <IoInformationCircle size="1.2rem" /> More Details
+        </Button>
       </CardBody>
     </Card>
   );

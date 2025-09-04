@@ -23,32 +23,36 @@ const CarDetailsCard = ({ carData }) => {
   const router = useRouter();
   const car = carData.cars[0];
 
+  const handlePrint = () => {
+    window.print();
+  };
+
   return (
     <>
       {authenticated ? (
         <Card
           maxW="5xl"
           mx="auto"
-          my={6}
+          my={0}
           shadow="xl"
           borderRadius="2xl"
           overflow="hidden"
           transition="all .5s ease"
           _hover={{ transform: "scale(1.01)", shadow: "2xl" }}
         >
-          <CardHeader bg="blue.100" p={{ base: 3, md: 5 }}>
+          <CardHeader bg="primary.400" p={{ base: 3, md: 2 }}>
             <Heading
               size={{ base: "sm", md: "lg" }}
               textAlign="center"
-              color="blue.700"
+              color="white.100"
             >
-              Car Details
+              CAR DETAILS
             </Heading>
           </CardHeader>
 
           <Divider />
 
-          <CardBody p={{ base: 3, md: 6 }}>
+          <CardBody p={{ base: 3, md: 3 }}>
             <Stack
               direction={{ base: "column", md: "row" }}
               spacing={{ base: 4, md: 6 }}
@@ -71,7 +75,7 @@ const CarDetailsCard = ({ carData }) => {
               <Box
                 w={{ base: "100%", md: "60%" }}
                 p={{ base: 3, md: 5 }}
-                bg="gray.50"
+                bg="secondary.200"
                 borderRadius="md"
                 shadow="sm"
               >
@@ -107,13 +111,13 @@ const CarDetailsCard = ({ carData }) => {
             </Stack>
 
             <Box
-              mt={6}
+              mt={3}
               p={{ base: 3, md: 5 }}
               border="1px"
               borderColor="gray.200"
               borderRadius="md"
             >
-              <Heading size="sm" mb={2} color="blue.600">
+              <Heading size="sm" mb={2} color="primary.500">
                 Other Details
               </Heading>
               <VStack align="start" spacing={2}>
@@ -176,14 +180,28 @@ const CarDetailsCard = ({ carData }) => {
               </VStack>
             </Box>
 
-            <Box textAlign="center" mt={6} gap={2}>
+            <Box textAlign="center" mt={3} gap={2}>
               <Button
-                colorScheme="blue"
+                bg="primary.500"
+                color="white.100"
+                rounded="2xl"
+                _hover={{ bg: "primary.600", transform: "scale(1.05)" }}
                 size={{ base: "sm", md: "md" }}
                 mr={2}
                 onClick={() => router.back()}
               >
                 Go Back
+              </Button>
+              <Button
+                bg="primary.500"
+                color="white.100"
+                rounded="2xl"
+                _hover={{ bg: "primary.600", transform: "scale(1.05)" }}
+                size={{ base: "sm", md: "md" }}
+                mr={2}
+                onClick={handlePrint}
+              >
+                PDF/Print
               </Button>
             </Box>
           </CardBody>

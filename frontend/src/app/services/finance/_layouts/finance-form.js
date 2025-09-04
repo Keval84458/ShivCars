@@ -10,7 +10,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { ThemeInput, ThemeSelect } from "@/utils";
-import { handleCreateFinance } from "@/services/server-apis";
+import { handleCreateFinance } from "@/services/other-apis";
 import { toast } from "react-toastify";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 import Link from "next/link";
@@ -64,33 +64,51 @@ const CarFinanceForm = () => {
   };
 
   const handleSubmit = async () => {
-    try {
-      console.log("formData", formData);
-      const payload = { ...formData };
+    if (
+      !formData.vehicleName ||
+      !formData.regNo ||
+      !formData.ownerName ||
+      !formData.email ||
+      !formData.mobileNo ||
+      !formData.loanProvider ||
+      !formData.loanAmount ||
+      !formData.months ||
+      !formData.interestRate ||
+      !formData.emiAmount ||
+      !formData.totalPayableAmount ||
+      !formData.startDate ||
+      !formData.status
+    ) {
+      toast.error("All fields are required...");
+    } else {
+      try {
+        console.log("formData", formData);
+        const payload = { ...formData };
 
-      const response = await handleCreateFinance(payload);
-      if (response) {
-        toast.success("Finance record created successfully!");
-        setFormData({
-          vehicleName: "",
-          regNo: "",
-          ownerName: "",
-          email: "",
-          mobileNo: "",
-          loanProvider: "",
-          loanAmount: "",
-          months: "",
-          interestRate: "",
-          emiAmount: "",
-          totalPayableAmount: "",
-          startDate: "",
-          status: "",
-        });
-      } else {
-        toast.error("Finance record failed, please try again..!");
+        const response = await handleCreateFinance(payload);
+        if (response) {
+          toast.success("Finance record created successfully!");
+          setFormData({
+            vehicleName: "",
+            regNo: "",
+            ownerName: "",
+            email: "",
+            mobileNo: "",
+            loanProvider: "",
+            loanAmount: "",
+            months: "",
+            interestRate: "",
+            emiAmount: "",
+            totalPayableAmount: "",
+            startDate: "",
+            status: "",
+          });
+        } else {
+          toast.error("Finance record failed, please try again..!");
+        }
+      } catch (err) {
+        console.log("err", err);
       }
-    } catch (err) {
-      console.log("err", err);
     }
   };
 
@@ -284,15 +302,21 @@ const CarFinanceForm = () => {
               </Text>
             </Box>
 
-            <Button
-              mt={6}
-              colorScheme="blue"
-              type="button"
-              w="full"
-              onClick={handleSubmit}
-            >
-              Submit Finance
-            </Button>
+            <Box display="flex" justifyContent="center">
+              <Button
+                mt={4}
+                type="button"
+                bg="primary.500"
+                color="white.100"
+                size="md"
+                w="sm"
+                _hover={{ transform: "scale(1.02)", bg: "primary.600" }}
+                transition="0.2s"
+                onClick={handleSubmit}
+              >
+                Submit Finance
+              </Button>
+            </Box>
           </Box>
         </>
       ) : (

@@ -57,10 +57,11 @@ export default function Intro() {
             bg="primary.600"
             color="white.100"
             rounded="full"
-            px={3}
+            px={4}
             py={1}
+            fontSize="md"
           >
-            Who We Are
+            About Us
           </Badge>
 
           <Heading

@@ -5,6 +5,7 @@ import {
   Box,
   Button,
   FormControl,
+  FormErrorIcon,
   FormLabel,
   Heading,
   Input,
@@ -15,12 +16,13 @@ import {
 import {
   getAllNewCars,
   handleCarBooking as carBooking,
-} from "@/services/server-apis";
+} from "@/services/other-apis";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import { CAR_SUBPAGE_KEY } from "@/utils/constant";
 import { useAuth } from "@/context/AuthProvider";
 import NotLoggedIn from "@/app/components/not-logged-in";
+import { toast } from "react-toastify";
 
 const CarBookingForm = () => {
   const { authenticated } = useAuth();
@@ -51,49 +53,62 @@ const CarBookingForm = () => {
   const onChange = (key, value) => setFormData({ ...formData, [key]: value });
 
   const handleCarBooking = async () => {
-    try {
-      const payload = { ...formData };
-
-      const res = await carBooking(payload);
-      if (res) {
-        Swal.fire({
-          title: "Congratulations",
-          text: "Your car booked successfuuly",
-          icon: "success",
-        });
-        setFormData({
-          car_id: "",
-          customer_name: "",
-          email: "",
-          mobile_no: "",
-          location: "",
-          id_proof: "",
-          mobile_no: "",
-          id_number: "",
-          feedback: "",
-        });
-        router.push(CAR_SUBPAGE_KEY.NEW_CAR);
-      } else {
-        Swal.fire({
-          title: "Failed..",
-          text: "Some issues, Please try again ",
-          icon: "error",
-        });
-        setFormData({
-          car_id: "",
-          customer_name: "",
-          email: "",
-          mobile_no: "",
-          location: "",
-          id_proof: "",
-          mobile_no: "",
-          id_number: "",
-          feedback: "",
-        });
+    if (
+      !formData.car_id ||
+      !formData.customer_name ||
+      !formData.email ||
+      !formData.mobile_no ||
+      !formData.location ||
+      !formData.id_proof ||
+      !formData.mobile_no ||
+      !formData.id_number ||
+      !formData.feedback
+    ) {
+      toast.error("All fields are required.....");
+    } else {
+      try {
+        const payload = { ...formData };
+        const res = await carBooking(payload);
+        if (res) {
+          Swal.fire({
+            title: "Congratulations",
+            text: "Your car booked successfuuly",
+            icon: "success",
+          });
+          setFormData({
+            car_id: "",
+            customer_name: "",
+            email: "",
+            mobile_no: "",
+            location: "",
+            id_proof: "",
+            mobile_no: "",
+            id_number: "",
+            feedback: "",
+          });
+          router.push(CAR_SUBPAGE_KEY.NEW_CAR);
+        } else {
+          Swal.fire({
+            title: "Failed..",
+            text: "Some issues, Please try again ",
+            icon: "error",
+          });
+          setFormData({
+            car_id: "",
+            customer_name: "",
+            email: "",
+            mobile_no: "",
+            location: "",
+            id_proof: "",
+            mobile_no: "",
+            id_number: "",
+            feedback: "",
+          });
+        }
+      } catch (err) {
+        console.log("err", err);
+        alert("❌ Booking failed! Please try again.");
       }
-    } catch (err) {
-      console.log("err", err);
-      alert("❌ Booking failed! Please try again.");
     }
   };
 
@@ -107,7 +122,7 @@ const CarBookingForm = () => {
         <Box
           maxW="550px"
           mx="auto"
-          mt={10}
+          mt={1}
           p={6}
           borderWidth="1px"
           borderRadius="2xl"
@@ -120,7 +135,7 @@ const CarBookingForm = () => {
             size="lg"
             textAlign="center"
             mb={6}
-            color="blue.300"
+            color="primary.500"
             fontWeight="bold"
           >
             Car Booking Form
@@ -223,20 +238,22 @@ const CarBookingForm = () => {
               </Select>
             </FormControl>
 
-            <Button
-              type="submit"
-              bg="blue.500"
-              size="lg"
-              w="full"
-              _hover={{ bg: "blue.600" }}
-              color="white"
-              fontWeight="bold"
-              borderRadius="xl"
-              boxShadow="md"
-              onClick={handleCarBooking}
-            >
-              Book Now
-            </Button>
+            <Box display="flex" justifyContent="center">
+              <Button
+                mt={4}
+                type="button"
+                bg="primary.500"
+                color="white.100"
+                size="md"
+                w="sm"
+                _hover={{ transform: "scale(1.02)", bg: "primary.600" }}
+                transition="0.2s"
+                onClick={handleCarBooking}
+                loadingText="Submitting..."
+              >
+                Book Now
+              </Button>
+            </Box>
           </VStack>
         </Box>
       ) : (

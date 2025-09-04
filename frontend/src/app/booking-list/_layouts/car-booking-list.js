@@ -18,7 +18,7 @@ import {
 import {
   handlegetAllCarBookings,
   handleBookedCarDeleteById,
-} from "@/services/server-apis";
+} from "@/services/other-apis";
 import { MdDelete } from "react-icons/md";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";

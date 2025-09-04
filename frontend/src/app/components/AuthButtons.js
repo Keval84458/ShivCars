@@ -5,7 +5,7 @@ import { Box, Button } from "@chakra-ui/react";
 import Link from "next/link";
 import { useAuth } from "@/context/AuthProvider";
 import { toast } from "react-toastify";
-import { handleLogout } from "@/services/client-apis";
+import { handleLogout } from "@/services/auth-apis";
 
 const AuthButtons = () => {
   const { authenticated, setAuthenticated } = useAuth();

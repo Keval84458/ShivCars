@@ -16,16 +16,13 @@ import {
   AccordionPanel,
   AccordionIcon,
   Box,
-  Text,
 } from "@chakra-ui/react";
 import { PiListBold } from "react-icons/pi";
 import Link from "next/link";
 import {
-  ABOUT_SUBPAGE_KEY,
   BOOKING_SUBPAGE_KEY,
   CAR_SUBPAGE_KEY,
   CONTACT_SUBPAGE_KEY,
-  PROFILE_SUBPAGE_KEY,
   SERVICES_SUBPAGE_KEY,
 } from "@/utils/constant";
 
@@ -67,10 +64,6 @@ const HeaderDrawer = () => {
       options: [
         { title: "Book a service", link: BOOKING_SUBPAGE_KEY.BOOK_SERVICE },
       ],
-    },
-    {
-      title: "About Us",
-      options: [{ title: "Who we are ?", link: ABOUT_SUBPAGE_KEY.WHO_WE_ARE }],
     },
     {
       title: "Contact",

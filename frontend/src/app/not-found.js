@@ -56,7 +56,8 @@ const NotFound = () => {
             rounded="full"
             px={8}
             shadow="md"
-            _hover={{ transform: "scale(1.05)" }}
+            _hover={{ transform: "scale(1.05)", bg: "primary.400" }}
+            _disabled={{ bg: "primary.400" }}
           >
             Go Home
           </Button>

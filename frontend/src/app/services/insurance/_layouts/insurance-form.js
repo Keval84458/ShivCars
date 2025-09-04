@@ -12,9 +12,10 @@ import {
   useBreakpointValue,
   VStack,
 } from "@chakra-ui/react";
-import { handleCreateInsurance } from "@/services/server-apis";
+import { handleCreateInsurance } from "@/services/other-apis";
 import { useAuth } from "@/context/AuthProvider";
 import NotLoggedIn from "@/app/components/not-logged-in";
+import { toast } from "react-toastify";
 
 const InsuranceForm = () => {
   const { authenticated } = useAuth();
@@ -50,27 +51,43 @@ const InsuranceForm = () => {
   const columns = useBreakpointValue({ base: 1, md: 2 });
 
   const handleSubmitForm = async () => {
-    try {
-      const payload = { ...formData };
+    if (
+      !formData.carName ||
+      !formData.regNo ||
+      !formData.ownerName ||
+      !formData.email ||
+      !formData.mobileNo ||
+      !formData.policyNo ||
+      !formData.insuranceProvider ||
+      !formData.insuranceType ||
+      !formData.premiumAmount ||
+      !formData.startDate ||
+      !formData.renewalStatus
+    ) {
+      toast.error("All fields are required....");
+    } else {
+      try {
+        const payload = { ...formData };
 
-      const response = await handleCreateInsurance(payload);
-      console.log("response", response);
+        const response = await handleCreateInsurance(payload);
+        console.log("response", response);
 
-      setFormData({
-        carName: "",
-        regNo: "",
-        ownerName: "",
-        email: "",
-        mobileNo: "",
-        policyNo: generatePolicyNo(),
-        insuranceProvider: "",
-        insuranceType: "",
-        premiumAmount: "",
-        startDate: "",
-        renewalStatus: "",
-      });
-    } catch (err) {
-      console.log("err", err);
+        setFormData({
+          carName: "",
+          regNo: "",
+          ownerName: "",
+          email: "",
+          mobileNo: "",
+          policyNo: generatePolicyNo(),
+          insuranceProvider: "",
+          insuranceType: "",
+          premiumAmount: "",
+          startDate: "",
+          renewalStatus: "",
+        });
+      } catch (err) {
+        console.log("err", err);
+      }
     }
   };
 
@@ -85,16 +102,8 @@ const InsuranceForm = () => {
           borderWidth="1px"
           borderRadius="2xl"
           boxShadow="xl"
-          bg="white"
-          _dark={{ bg: "gray.800" }}
         >
-          <Heading
-            size="lg"
-            mb={8}
-            textAlign="center"
-            color="teal.600"
-            _dark={{ color: "teal.300" }}
-          >
+          <Heading size="lg" mb={8} textAlign="center" color="primary.500">
             Car Insurance Form
           </Heading>
 
@@ -226,19 +235,21 @@ const InsuranceForm = () => {
                 </ThemeSelect>
               </FormControl>
             </SimpleGrid>
-
-            <Button
-              mt={4}
-              type="button"
-              colorScheme="teal"
-              size="lg"
-              w="full"
-              _hover={{ transform: "scale(1.02)" }}
-              transition="0.2s"
-              onClick={handleSubmitForm}
-            >
-              Submit
-            </Button>
+            <Box display="flex" justifyContent="center">
+              <Button
+                mt={4}
+                type="button"
+                bg="primary.500"
+                color="white.100"
+                size="md"
+                w="sm"
+                _hover={{ transform: "scale(1.02)", bg: "primary.600" }}
+                transition="0.2s"
+                onClick={handleSubmitForm}
+              >
+                Submit
+              </Button>
+            </Box>
           </VStack>
         </Box>
       ) : (

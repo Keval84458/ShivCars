@@ -17,7 +17,7 @@ import {
 import { toast } from "react-toastify";
 import { PAGE_PATH_KEYS } from "@/utils/constant";
 import { useRouter } from "next/navigation";
-import { handleSignup } from "@/services/server-apis";
+import { handleSignup } from "@/services/auth-apis";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const SignUpForm = () => {

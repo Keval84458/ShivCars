@@ -22,6 +22,7 @@ import {
 } from "@/utils/constant";
 import AuthButtons from "./AuthButtons";
 import { ChevronDownIcon } from "@chakra-ui/icons";
+import { IoHome } from "react-icons/io5";
 
 const HeaderNavigation = () => {
   const linkMenus = [
@@ -58,10 +59,6 @@ const HeaderNavigation = () => {
       options: [
         { title: "Book a service", link: BOOKING_SUBPAGE_KEY.BOOK_SERVICE },
       ],
-    },
-    {
-      title: "About Us",
-      options: [{ title: "Who we are ?", link: ABOUT_SUBPAGE_KEY.WHO_WE_ARE }],
     },
     {
       title: "Contact",
@@ -112,7 +109,7 @@ const HeaderNavigation = () => {
               color="white.100"
               _disabled={{ bg: "transparent", color: "white.100" }}
             >
-              Home
+              <IoHome size="1.7rem" />
             </Button>
 
             {linkMenus.map((menu, inx, arr) => {
@@ -152,6 +149,17 @@ const HeaderNavigation = () => {
                 </React.Fragment>
               );
             })}
+            <Button
+              as={Link}
+              href={PAGE_PATH_KEYS.ABOUT}
+              backgroundColor="transparent"
+              _hover={{ bg: "transparent", color: "white.100" }}
+              color="white.100"
+              _disabled={{ bg: "transparent", color: "white.100" }}
+              fontSize=".9rem"
+            >
+              About
+            </Button>
           </Box>
         </Flex>
 
